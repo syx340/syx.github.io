@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>刷题/笔试技巧之——C++万能头文件 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="刷题/笔试技巧之——C++万能头文件"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>刷题/笔试技巧之——C++万能头文件</h2>
+            <div class="post-meta">
+                <time class="date">2023.03.29</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h2 id="1、-include-lt-bits-x2F-stdc-h-gt-的使用"><a href="#1、-include-lt-bits-x2F-stdc-h-gt-的使用" class="headerlink" title="1、#include&lt;bits&#x2F;stdc++.h&gt;的使用"></a>1、#include&lt;bits&#x2F;stdc++.h&gt;的使用</h2><p> #include&lt;bits&#x2F;stdc++.h&gt;包含了目前c++所包含的所有头文件</p>
+<h2 id="2、对比"><a href="#2、对比" class="headerlink" title="2、对比"></a>2、对比</h2><p>转化</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;fstream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;deque&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;string&gt;
+#include &lt;cstring&gt;
+#include &lt;map&gt;
+#include &lt;stack&gt;
+#include &lt;set&gt; 
+using namespace std;
+
+int main()
+&#123;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以直接转化为：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
+using namespace std;
+
+int main()
+&#123;
+    return 0;
+ &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>兼容性问题<br>（1）注意：目前POJ还不支持&lt;bits&#x2F;stdc++.h&gt;（G++、C++都不支持）。HDU部分支持（G++支持，C++不支持）。其他国外的oj，还有台湾的oj都支持，CF，Topcoder也都支持。</p>
+<p>（2）当然，其实这是一个偷懒的写法，但是会降低编译速度（为何会降低编译速度，我还不能知道，等到之后学编译原理再来填坑吧）。</p>
+<p>（3）笔试平台可以使用，方便。VS中并不支持。一般G++ 4.4以上就支持这个头文件了。当然，私下自己学习就不要去使用了，对你的自主学习一点都没有好处。c++11支持这个。</p>
+<h2 id="3、-lt-bits-x2F-stdc-h-gt-源码"><a href="#3、-lt-bits-x2F-stdc-h-gt-源码" class="headerlink" title="3、&lt;bits&#x2F;stdc++.h&gt;源码"></a>3、&lt;bits&#x2F;stdc++.h&gt;源码</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; C++ includes used for precompiling -*- C++ -*-
+
+&#x2F;&#x2F; Copyright (C) 2003-2014 Free Software Foundation, Inc.
+&#x2F;&#x2F;
+&#x2F;&#x2F; This file is part of the GNU ISO C++ Library.  This library is free
+&#x2F;&#x2F; software; you can redistribute it and&#x2F;or modify it under the
+&#x2F;&#x2F; terms of the GNU General Public License as published by the
+&#x2F;&#x2F; Free Software Foundation; either version 3, or (at your option)
+&#x2F;&#x2F; any later version.
+
+&#x2F;&#x2F; This library is distributed in the hope that it will be useful,
+&#x2F;&#x2F; but WITHOUT ANY WARRANTY; without even the implied warranty of
+&#x2F;&#x2F; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+&#x2F;&#x2F; GNU General Public License for more details.
+
+&#x2F;&#x2F; Under Section 7 of GPL version 3, you are granted additional
+&#x2F;&#x2F; permissions described in the GCC Runtime Library Exception, version
+&#x2F;&#x2F; 3.1, as published by the Free Software Foundation.
+
+&#x2F;&#x2F; You should have received a copy of the GNU General Public License and
+&#x2F;&#x2F; a copy of the GCC Runtime Library Exception along with this program;
+&#x2F;&#x2F; see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+&#x2F;&#x2F; &lt;http:&#x2F;&#x2F;www.gnu.org&#x2F;licenses&#x2F;&gt;.
+
+&#x2F;** @file stdc++.h
+
+ *  This is an implementation file for a precompiled header.
+    *&#x2F;
+
+&#x2F;&#x2F; 17.4.1.2 Headers
+
+&#x2F;&#x2F; C
+#ifndef _GLIBCXX_NO_ASSERT
+#include &lt;cassert&gt;
+#endif
+#include &lt;cctype&gt;
+#include &lt;cerrno&gt;
+#include &lt;cfloat&gt;
+#include &lt;ciso646&gt;
+#include &lt;climits&gt;
+#include &lt;clocale&gt;
+#include &lt;cmath&gt;
+#include &lt;csetjmp&gt;
+#include &lt;csignal&gt;
+#include &lt;cstdarg&gt;
+#include &lt;cstddef&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;ctime&gt;
+
+#if __cplusplus &gt;&#x3D; 201103L
+#include &lt;ccomplex&gt;
+#include &lt;cfenv&gt;
+#include &lt;cinttypes&gt;
+#include &lt;cstdalign&gt;
+#include &lt;cstdbool&gt;
+#include &lt;cstdint&gt;
+#include &lt;ctgmath&gt;
+#include &lt;cwchar&gt;
+#include &lt;cwctype&gt;
+#endif
+
+&#x2F;&#x2F; C++
+#include &lt;algorithm&gt;
+#include &lt;bitset&gt;
+#include &lt;complex&gt;
+#include &lt;deque&gt;
+#include &lt;exception&gt;
+#include &lt;fstream&gt;
+#include &lt;functional&gt;
+#include &lt;iomanip&gt;
+#include &lt;ios&gt;
+#include &lt;iosfwd&gt;
+#include &lt;iostream&gt;
+#include &lt;istream&gt;
+#include &lt;iterator&gt;
+#include &lt;limits&gt;
+#include &lt;list&gt;
+#include &lt;locale&gt;
+#include &lt;map&gt;
+#include &lt;memory&gt;
+#include &lt;new&gt;
+#include &lt;numeric&gt;
+#include &lt;ostream&gt;
+#include &lt;queue&gt;
+#include &lt;set&gt;
+#include &lt;sstream&gt;
+#include &lt;stack&gt;
+#include &lt;stdexcept&gt;
+#include &lt;streambuf&gt;
+#include &lt;string&gt;
+#include &lt;typeinfo&gt;
+#include &lt;utility&gt;
+#include &lt;valarray&gt;
+#include &lt;vector&gt;
+
+#if __cplusplus &gt;&#x3D; 201103L
+#include &lt;array&gt;
+#include &lt;atomic&gt;
+#include &lt;chrono&gt;
+#include &lt;condition_variable&gt;
+#include &lt;forward_list&gt;
+#include &lt;future&gt;
+#include &lt;initializer_list&gt;
+#include &lt;mutex&gt;
+#include &lt;random&gt;
+#include &lt;ratio&gt;
+#include &lt;regex&gt;
+#include &lt;scoped_allocator&gt;
+#include &lt;system_error&gt;
+#include &lt;thread&gt;
+#include &lt;tuple&gt;
+#include &lt;typeindex&gt;
+#include &lt;type_traits&gt;
+#include &lt;unordered_map&gt;
+#include &lt;unordered_set&gt;
+#endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/03/29/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/C/" rel="tag">C++</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%88%B7%E9%A2%98-%E7%AC%94%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B9%8B%E2%80%94%E2%80%94C-%E4%B8%87%E8%83%BD%E5%A4%B4%E6%96%87%E4%BB%B6/">刷题/笔试技巧之——C++万能头文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/28/TCP/">TCP协议</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
