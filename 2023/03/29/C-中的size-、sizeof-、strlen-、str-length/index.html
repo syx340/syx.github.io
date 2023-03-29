@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>C++中的size()、sizeof() 、strlen()、str.length() - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="C++中的size()、sizeof() 、strlen()、str.length()"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>C++中的size()、sizeof() 、strlen()、str.length()</h2>
+            <div class="post-meta">
+                <time class="date">2023.03.29</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p><strong>c&#x2F;c++中获取字符串长度。有以下函数：size()、sizeof() 、strlen()、str.length();</strong></p>
+<h2 id="一、数组或字符串的长度-sizeof-、strlen"><a href="#一、数组或字符串的长度-sizeof-、strlen" class="headerlink" title="一、数组或字符串的长度:sizeof()、strlen()"></a>一、数组或字符串的长度:sizeof()、strlen()</h2><p><strong>1、sizeof():返回所占总空间的字节数</strong></p>
+<p><strong>2、strlen():返回字符数组或字符串所占的字节数</strong></p>
+<p>sizeof(…)是运算符，其值在编译时即计算好了，参数可以是数组、指针、类型、对象、函数等。它的功能是：获得保证能容纳实现所建立的最大对象的字节大小。由于在编译时计算，因此sizeof不能用来返回动态分配的内存空间的大小。</p>
+<p>strlen(…)是函数，要在运行时才能计算。参数必须是字符型指针（char*）。当数组名作为参数传入时，实际上数组就退化成指针了。它的功能是：返回字符串的长度。该字符串可能是自己定义的，也可能是内存中随机的，该函数实际完成的功能是从代表该字符串的第一个地址开始遍历，直到遇到结束符’\0’。返回的长度大小不包括’\0’。</p>
+<p>strlen(char*)函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个’\0’,如果你只定义没有给它赋初值，这个结果是不定的，它会从aa首地址一直找下去，直到遇到’\0’停止。</p>
+<p>c&#x2F;c++ strlen(str)和str.length()和str.size()都可以求字符串长度。</p>
+<p>其中str.length()和str.size()是用于求string类对象的成员函数</p>
+<p>strlen(str)是用于求字符数组的长度，其参数是char*。</p>
+<p>举例：</p>
+<p>1）char* ss &#x3D; “0123456789”;</p>
+<p>sizeof(ss)为4，ss是指向字符串常量的字符指针，sizeof 获得的是指针所占的空间,则为4</p>
+<p>sizeof(<em>ss)为1，</em>ss是第一个char字符，则为1</p>
+<p>2）char ss[] &#x3D; “0123456789”;</p>
+<p>sizeof(ss)为11,ss是数组，计算到’\0’位置，因此是(10+1)</p>
+<p>sizeof(*ss)为1,*ss是第一个字符</p>
+<p>3）char ss[100] &#x3D; “0123456789”;</p>
+<p>sizeof(ss)为100，ss表示在内存中预分配的大小，100*1</p>
+<p>strlen(ss)为10，它的内部实现用一个循环计算字符串的长度,直到’\0’为止。</p>
+<p>4）int ss[100] &#x3D; “0123456789”;</p>
+<p>sizeof(ss)为400，ss表示在内存中预分配的大小，100*4</p>
+<p>strlen(ss)错误，strlen参数只能是char*，且必须是以’\0’结尾</p>
+<p>5）char[] a&#x3D;{‘a’,’b’,’c’};</p>
+<p>sizeof(a)的值应该为3。</p>
+<p>char[] b&#x3D;{“abc”};</p>
+<p>sizeof(b)的值应该是4。</p>
+<p>若string str&#x3D;{‘a’,’b’,’c’,’\0’,’X’};</p>
+<p>那么sizeof(str)为5，strlen(str)为3。</p>
+<p><strong>sizeof()、strlen()两者区别：</strong></p>
+<p>1）sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。 </p>
+<p>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+<p>2）sizeof是运算符，strlen是函数。 </p>
+<p>3）sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。 </p>
+<p><strong>sizeof还可以用函数做参数，比如：</strong> </p>
+<p><strong>short f();</strong> </p>
+<p><strong>printf(“%d\n”, sizeof(f()));</strong> </p>
+<p><strong>输出的结果是sizeof(short)，即2。</strong> </p>
+<p>4）数组做sizeof的参数不退化，传递给strlen就退化为指针了。 </p>
+<p>5）大部分编译程序 在编译的时候就把sizeof计算过了，是类型或是变量的长度。这就是sizeof(x)可以用来定义数组维数的原因 </p>
+<p>char str[20]&#x3D;”0123456789”; </p>
+<p>int a&#x3D;strlen(str); &#x2F;&#x2F;a&#x3D;10; </p>
+<p>int b&#x3D;sizeof(str); &#x2F;&#x2F;而b&#x3D;20; </p>
+<p>6）strlen的结果要在运行的时候才能计算出来，用来计算字符串的长度，不是类型占内存的大小。 </p>
+<p>7）sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数。 </p>
+<p>8）当使用了一个结构类型或变量时， sizeof 返回实际的大小， 当使用一静态地空间数组， sizeof 返回全部数组的尺寸。 sizeof 操作符不能返回被动态分配的数组或外部的数组的尺寸 </p>
+<h2 id="二、string中length-和size"><a href="#二、string中length-和size" class="headerlink" title="二、string中length()和size()"></a>二、string中length()和size()</h2><p><strong>c++中的size()和length()没有区别</strong></p>
+<p>如：</p>
+<p>string str&#x3D;”0123456789”;</p>
+<p>cout &lt;&lt;”str.length()&#x3D;”&lt;&lt;str.length()&lt;&lt;endl;&#x2F;&#x2F;结果为10</p>
+<p>cout &lt;&lt;”str.size()&#x3D;”&lt;&lt;str.size()&lt;&lt;endl;&#x2F;&#x2F;结果为10</p>
+<p>为了兼容，这两个函数一样。 length()是因为沿用C语言的习惯而保留下来的，string类最初只有length()，引入STL之后，为了兼容又加入了size()，它是作为STL容器的属性存在的，便于符合STL的接口规则，以便用于STL的算法。 string类的size()&#x2F;length()方法返回的是字节数，不管是否有汉字。</p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/03/29/%E5%88%B7%E9%A2%98-%E7%AC%94%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B9%8B%E2%80%94%E2%80%94C-%E4%B8%87%E8%83%BD%E5%A4%B4%E6%96%87%E4%BB%B6/">刷题/笔试技巧之——C++万能头文件</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/C/" rel="tag">C++</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/C-%E4%B8%AD%E7%9A%84size-%E3%80%81sizeof-%E3%80%81strlen-%E3%80%81str-length/">C++中的size()、sizeof() 、strlen()、str.length()</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%88%B7%E9%A2%98-%E7%AC%94%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B9%8B%E2%80%94%E2%80%94C-%E4%B8%87%E8%83%BD%E5%A4%B4%E6%96%87%E4%BB%B6/">刷题/笔试技巧之——C++万能头文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/28/TCP/">TCP协议</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
