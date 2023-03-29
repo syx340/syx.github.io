@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>c++ getline() 函数 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="c++ getline() 函数"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>c++ getline() 函数</h2>
+            <div class="post-meta">
+                <time class="date">2023.03.29</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p><strong>虽然可以使用 cin 和 &gt;&gt; 运算符来输入字符串，但它可能会导致一些需要注意的问题。</strong></p>
+<p>当 cin 读取数据时，它会传递并忽略任何前导白色空格字符（空格、制表符或换行符）。一旦它接触到第一个非空格字符即开始阅读，当它读取到下一个空白字符时，它将停止读取。以下面的语句为例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cin <span class="token operator">>></span> namel<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以输入 “Mark” 或 “Twain”，但不能输入 “Mark Twain”，因为 cin 不能输入包含嵌入空格的字符串。下面程序演示了这个问题：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">//</span> This program illustrates a problem that can occur <span class="token keyword">if</span>
+<span class="token operator">//</span> cin <span class="token keyword">is</span> used to read character data into a string <span class="token builtin">object</span><span class="token punctuation">.</span>
+<span class="token comment">#include &lt;iostream></span>
+<span class="token comment">#include &lt;string> // Header file needed to use string objects</span>
+using namespace std<span class="token punctuation">;</span>
+
+<span class="token builtin">int</span> main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    string name<span class="token punctuation">;</span>
+    string city<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Please enter your name: "</span><span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> name<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Enter the city you live in: "</span><span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> city<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Hello, "</span> <span class="token operator">&lt;&lt;</span> name <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"You live in "</span> <span class="token operator">&lt;&lt;</span> city <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>程序输出结果：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Please enter your name： John Doe
+Enter the city you live in: Hello, John
+You live in Doe<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>请注意，在这个示例中，用户根本没有机会输入 city 城市名。因为在第一个输入语句中，当 cin 读取到 John 和 Doe 之间的空格时，它就会停止阅读，只存储 John 作为 name 的值。在第二个输入语句中， cin 使用键盘缓冲区中找到的剩余字符，并存储 Doe 作为 city 的值。</p>
+<p>为了解决这个问题，可以使用一个叫做 getline 的 <a target="_blank" rel="noopener" href="http://c.biancheng.net/cplus/">C++</a> 函数。此函数可读取整行，包括前导和嵌入的空格，并将其存储在字符串对象中。</p>
+<p>getline 函数如下所示：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">getline(cin, inputLine);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中 cin 是正在读取的输入流，而 inputLine 是接收输入字符串的 string 变量的名称。下面的程序演示了 getline 函数的应用：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; This program illustrates using the getline function
+&#x2F;&#x2F;to read character data into a string object.
+#include &lt;iostream&gt;
+#include &lt;string&gt; &#x2F;&#x2F; Header file needed to use string objects
+using namespace std;
+
+int main()
+&#123;
+    string name;
+    string city;
+    cout &lt;&lt; &quot;Please enter your name: &quot;;
+    getline(cin, name);
+    cout &lt;&lt; &quot;Enter the city you live in: &quot;;
+    getline(cin, city);
+    cout &lt;&lt; &quot;Hello, &quot; &lt;&lt; name &lt;&lt; endl;
+    cout &lt;&lt; &quot;You live in &quot; &lt;&lt; city &lt;&lt; endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>程序输出结果：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Please enter your name: John Doe
+Enter the city you live in: Chicago
+Hello, John Doe
+You live in Chicago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/03/29/C-%E4%B8%AD%E7%9A%84size-%E3%80%81sizeof-%E3%80%81strlen-%E3%80%81str-length/">C++中的size()、sizeof() 、strlen()、str.length()</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/getline-%E5%87%BD%E6%95%B0/" rel="tag">getline()函数</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/c-getline-%E5%87%BD%E6%95%B0/">c++ getline() 函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/C-%E4%B8%AD%E7%9A%84size-%E3%80%81sizeof-%E3%80%81strlen-%E3%80%81str-length/">C++中的size()、sizeof() 、strlen()、str.length()</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%88%B7%E9%A2%98-%E7%AC%94%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B9%8B%E2%80%94%E2%80%94C-%E4%B8%87%E8%83%BD%E5%A4%B4%E6%96%87%E4%BB%B6/">刷题/笔试技巧之——C++万能头文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/28/TCP/">TCP协议</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
