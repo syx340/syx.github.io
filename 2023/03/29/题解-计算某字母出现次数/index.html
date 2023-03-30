@@ -125,9 +125,45 @@ int main()&#123;
 
 <p><strong>复杂度分析：</strong></p>
 <ul>
-<li>时间复杂度：<em>O</em>(<em>n</em>)，相当于遍历字符串的所有字符</li>
-<li>空间复杂度：O*(*n)，数组要存储字符串所有的非空格字符</li>
+<li><p>时间复杂度：<em>O</em>(<em>n</em>)，相当于遍历字符串的所有字符</p>
+</li>
+<li><p>空间复杂度：O*(*n)，数组要存储字符串所有的非空格字符</p>
+<h2 id="r-n-r-n的区别："><a href="#r-n-r-n的区别：" class="headerlink" title="\r,\n,\r\n的区别："></a>\r,\n,\r\n的区别：</h2></li>
 </ul>
+<p>代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">1:              string s1 &#x3D; &quot;已经习惯了回车和换行一次搞定\n，敲一个回车键，即是回&quot;;
+2:   
+3:              Console.WriteLine(s1);
+4:              s1 &#x3D; &quot;已经习惯了回车和换行一次搞定\r，敲一个回车键，即是回&quot;;
+5:              Console.WriteLine(s1);
+6:              s1 &#x3D; &quot;已经习惯了回车和换行一次搞定\r\n，敲一个回车键，即是回&quot;;
+7:              Console.WriteLine(s1);
+8:   
+9:              Console.ReadLine();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结果</p>
+<p><img src="/2023/03/29/%E9%A2%98%E8%A7%A3-%E8%AE%A1%E7%AE%97%E6%9F%90%E5%AD%97%E6%AF%8D%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0/08141919-bd2815485eff4232a4cb209c5a1676e6.png"></p>
+<h3 id="回车、换行的区别"><a href="#回车、换行的区别" class="headerlink" title="回车、换行的区别"></a>回车、换行的区别</h3><p>他们间的区别其实是个回车换行的问题</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">符号    ASCII码    意义
+
+\n        10      换行
+
+\r        13      回车CR<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="while-c-x3D-getchar-x3D-’-n’-的意思"><a href="#while-c-x3D-getchar-x3D-’-n’-的意思" class="headerlink" title="while((c&#x3D;getchar())!&#x3D;’\n’)的意思:"></a>while((c&#x3D;getchar())!&#x3D;’\n’)的意思:</h2><p>while((c&#x3D;getchar())!&#x3D;’\n’)的意思是：一直循环，等到用户输入回车为止，结束循环。</p>
+<p>当程序调用getchar时，程序就等着用户按键。用户输入的字符被存放在键盘缓冲区中。直到用户按回车为止。当用户键入回车之后，getchar才开始从stdin流中每次读入一个字符。getchar函数的返回值是用户输入的字符的ASCII码，若文件结尾则返回-1(EOF)，且将用户输入的字符回显到屏幕。</p>
+<p>(c&#x3D;getchar())!&#x3D;’\n’表示的条件语句意思是：判断用户的输入字符不是’\n’，即回车，只要用户输入的不是回车，while循环就会一直执行。</p>
+<p><strong>扩展资料：</strong></p>
+<p>getch与getchar功能比较：</p>
+<p>1、getch与getchar基本功能相同，差别是getch直接从键盘获取键值，不等待用户按回车，只要用户按一个键，getch就立刻返回， getch返回值是用户输入的ASCII码，出错返回-1，输入的字符不会回显在屏幕上。</p>
+<p>2、getch函数常用于程序调试中，在调试时，在关键位置显示有关的结果以待查看，然后用getch函数暂停程序运行，当按任意键后程序继续运行。</p>
+<h2 id="c-x3D-c-‘A’-’a’-是什么意思"><a href="#c-x3D-c-‘A’-’a’-是什么意思" class="headerlink" title="c &#x3D; c-‘A’+’a’;是什么意思"></a>c &#x3D; c-‘A’+’a’;是什么意思</h2><p>在C语言中ch&#x3D;c-‘A’+’a’;的意思是，是把表示大写字母的变量c转换为小写字母的语句，使用前一般要先判断一下的，如下：</p>
+<p>if(c&gt;&#x3D; ‘A’ &amp;&amp; c &lt;&#x3D; ‘Z’)</p>
+<p>ch &#x3D; c - ‘A’ + ‘a’;</p>
+<p>因为当c&#x3D;’B’时，c - ‘A’ 就等于1，然后1+’a’就是’b’。</p>
+<p>如果事先不检测的话，当c不是大写字母时作这样的转换是会无法理解的。</p>
 
         </article>
         <section class="post-near">
