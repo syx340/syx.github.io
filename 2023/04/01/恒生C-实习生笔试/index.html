@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>恒生C++实习生笔试 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="恒生C++实习生笔试"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>恒生C++实习生笔试</h2>
+            <div class="post-meta">
+                <time class="date">2023.04.01</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p>**某银行业务系统在与第三方系统通讯时，需要采用非对称加密算法交换密钥，下列加密算法中，属于非对称加密算法的是 **</p>
+<p>**A DES **</p>
+<p>**B IDEA **</p>
+<p>**C RSA **</p>
+<p><strong>D AES</strong></p>
+<p>解析：非对称加密算法是一种加密技术，它使用公钥和私钥来加密和解密数据。在这种算法中，加密和解密过程中使用的密钥不同，因此被称为非对称加密算法。因此，正确答案是C RSA，而A、B、D都是对称加密算法。</p>
+<p>**以下多线程对int型变量x的操作，哪几个需要进行同步? ** </p>
+<p><strong>A X&#x3D;1</strong> </p>
+<p><strong>B ++X</strong> </p>
+<p><strong>C x++</strong> </p>
+<p><strong>D x&#x3D;y</strong></p>
+<p>解析：在多线程环境下，如果多个线程同时访问共享变量，可能会导致竞态条件的出现，进而导致程序的行为出现不可预期的结果。因此，需要对共享变量进行同步，以保证线程安全。针对题目中的int型变量x，需要进行同步的操作有B、C和D。</p>
+<p>A操作不需要进行同步，因为它只是给变量x赋值，不会改变其原有的值。B和C操作都是对变量x进行加1的操作，如果多个线程同时执行这些操作，就可能导致多个线程都读取了变量x的同一个值，然后都对这个值进行了加1的操作，最终结果可能不是我们期望的结果。D操作涉及到了变量y，如果y也是一个共享变量，那么也需要对其进行同步。如果y不是共享变量，那么就不需要对D操作进行同步了。</p>
+<p>**完全二叉树的特点是叶子结点分布在最后两层，且除最后一层之外，其他层的结点教都达到最大值，那么25个结点的完全二叉树的高度(即层数) 为 **</p>
+<p>**A 6 **</p>
+<p>**B 5 **</p>
+<p>**C 4 **</p>
+<p><strong>D 3</strong></p>
+<p>解析：完全二叉树的结点个数可以通过一个公式计算：设高度为h，结点个数为n，则有 n &lt;&#x3D; 2^h - 1。反过来，如果知道结点个数n，可以通过求解 h &gt;&#x3D; log_2(n+1)得到完全二叉树的高度。</p>
+<p>在本题中，结点个数为25，可以通过公式计算得到最小的高度为 h &gt;&#x3D; log_2(25+1)  ≈ 4.64。根据完全二叉树的定义，高度必须是整数，因此最小的高度为5。选项B是正确的答案。</p>
+<p><strong>传输控制协议TCP在IP协议的基础上，提供端到端的可靠传输，它对应于OSI参考模型的 ()。</strong> </p>
+<p><strong>A 网络层</strong></p>
+<p><strong>B 传输层</strong> </p>
+<p><strong>C 会话层</strong> </p>
+<p><strong>D 应用层</strong></p>
+<p>解析：传输控制协议TCP对应于OSI参考模型的传输层，提供了端到端的可靠传输服务。因此，正确答案是B。</p>
+<p><strong>统一资源地址(URL) http:&#x2F;ww.hundsun.com&#x2F;index.html中的<a target="_blank" rel="noopener" href="http://www.hundsun.com、index.html、htp分别表示/">www.hundsun.com、index.html、htp分别表示</a></strong></p>
+<p><strong>A 请求查看的文档名和域名、所使用的协议、访问的主机</strong> </p>
+<p><strong>B 访同主机的域名、请求查看的文档名、所使用的协议</strong> </p>
+<p><strong>C 所使用的协议、访问主机的域名、请求查看的文档名</strong> </p>
+<p><strong>D 访问的主机、请求查看的文档名和域名、所使用的协议</strong></p>
+<p>解析：统一资源地址(URL) http:&#x2F;ww.hundsun.com&#x2F;index.html中的<a target="_blank" rel="noopener" href="http://www.hundsun.com、index.html、http分别表示访问主机的域名、请求查看的文档名、所使用的协议.因此,正确答案是c/">www.hundsun.com、index.html、http分别表示访问主机的域名、请求查看的文档名、所使用的协议。因此，正确答案是C</a></p>
+<p><strong>为了使模块尽可能独立,要求</strong> </p>
+<p><strong>A 模块的内聚程度要尽量低，且各模块间的耦合程度要尽量强</strong> </p>
+<p><strong>B 模块的内聚程度要尽量低，且各模块间的据合程度要尽量弱</strong> </p>
+<p><strong>C 模块的内聚程度要尽量高，且各模块间的据合程度要尽量弱</strong> </p>
+<p><strong>D 模块的内聚程度要尽量高，且各模块间的据合程度要尽量强</strong></p>
+<p>解析：为了使模块尽可能独立，要求模块的内聚程度要尽量高，各模块间的耦合程度要尽量弱。因此，正确答案是C。</p>
+<p>模块的内聚程度是指模块内部各个元素（如函数、变量等）之间的联系紧密程度，即模块内部元素的功能是否高度相关。高内聚的模块意味着模块内的元素之间联系紧密，完成一个具体的任务或目标。因此，模块的内聚程度应该尽量高，这样能够使模块的功能单一、独立性高，容易维护、测试和重用。</p>
+<p>模块间的耦合程度是指模块之间相互依赖的程度。高耦合的模块之间的依赖关系紧密，一旦其中一个模块发生变化，就会对其他模块产生影响。因此，为了使模块尽可能独立，应该尽量减少模块之间的耦合程度，即各模块之间的联系要尽量弱，这样才能提高系统的可维护性和可扩展性。</p>
+<p><strong>在20个互异元素构成的有序数组 a [1..20]中进行二分查找即折半查找，向下取整，若待查找的元素正好等于a[8]，则在此过程中，依次与数组中的 () 比较后，查找成功结束。</strong> </p>
+<p><strong>A a[10]、a[4]、a[8]</strong> </p>
+<p><strong>B a[10]、a[5]、a[8]</strong> </p>
+<p><strong>C a[10]、a[5]、a[7]、a[8]</strong> </p>
+<p><strong>D a[10]、a[4]、a[6]、a[8]</strong></p>
+<p>解析：在有序数组 a1, 2, …, 20 中进行二分查找时，第一次比较的元素为 a10，因为二分查找会将待查找区间折半，而中间元素为 a10。接着，若待查找的元素大于 a10，则在 a11, …, a20 中继续进行二分查找，否则在 a1, …, a9 中继续进行二分查找。以此类推，每次都会将待查找区间折半，直到找到待查找的元素或者待查找区间为空。</p>
+<p>因此，在此过程中，依次与数组中的 a10、a5、a8 比较后，查找成功结束。即正确答案是 B。</p>
+<p><strong>进程和程序的区别是</strong>        </p>
+<p><strong>A 程序没有状态，而进程是有状态的</strong> </p>
+<p><strong>B 程序可以长期保存，进程是暂时的</strong> </p>
+<p><strong>C 程序只能在前台运行，而进程可以在前台或后台运行</strong> </p>
+<p><strong>D 程序是一组有序的静态指令，进程是一次程序的执行过程</strong></p>
+<p>解析：进程和程序的区别是D。程序是一组有序的静态指令，可以长期保存，而进程是程序的一次执行过程，是具有状态的，可以在前台或后台运行。</p>
+<p><strong>一个初始状态为空的栈，现将股票、期货、证券、债券、银行依次入栈，然后退栈三次，则元素的退队顺序是</strong></p>
+<p><strong>A 证券、债券、银行</strong> </p>
+<p><strong>B 证券、期货、股票</strong> </p>
+<p><strong>C 银行、债券、证券</strong> </p>
+<p><strong>D 股票、期货、证券</strong></p>
+<p>解析：正确答案是C。栈的特点是后进先出，因此最后进栈的元素最先出栈。根据题意，股票、期货、证券、债券、银行依次入栈，即先入栈的是股票，最后入栈的是银行。退栈三次，即弹出三个元素，<strong>由于栈是后进先出</strong>，所以弹出的顺序是银行、债券、证券。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
+int i;
+void prt（)
+&#123;
+for(i &#x3D; 5; i &lt; 8; i++) printf(&quot;%c&quot;, &quot;*&quot;);
+printf(&quot;&quot;);
+&#125;
+void main()
+&#123;
+for (i &#x3D; 5; i &lt;&#x3D; 8;i++) prt();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>解析：在 <code>printf</code> 函数中，应该输出一个换行符来进行换行，应该修改为：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
+int i;
+void prt()
+&#123;
+    for(i &#x3D; 5; i &lt; 8; i++) printf(&quot;%c&quot;, &quot;*&quot;); 
+    &#x2F;&#x2F; %c是一个C语言中的格式控制符，用于在printf函数中打印字符。它指定要在输出中打印的下一个参数是一个字符。
+    &#x2F;&#x2F; 在本例中，它被用于打印一个星号符号（*）到控制台上。
+    printf(&quot;\n&quot;); &#x2F;&#x2F;换行符
+&#125;
+void main()
+&#123;
+    for (i &#x3D; 5; i &lt;&#x3D; 8;i++) prt();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样就可以正确输出一行三个星号，共输出四行，每行都有一个换行符进行换行。</p>
+<img src="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/274f2bfc1265c70589fe8983781cbe5.png" style="zoom:200%;">
+
+<p>解析：size（）返回实际占用字节大小，sizeof（）返回数组整体字节大小</p>
+<p>所以返回 128</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">struct
+&#123;
+char type;
+int num;
+char name[10];
+&#125;res;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>char是1字节，int 是4字节，若按4字节对齐，那么sizeof（res）等于</strong>？</p>
+<p>解析：在结构体中，C编译器通常会根据数据成员的类型和对齐规则来确定每个成员变量在内存中的偏移量和大小。默认情况下，对齐方式为按数据成员的自然对齐方式对齐，即成员变量的对齐大小为其本身所占字节数或者其类型的最大对齐字节数（取两者的较小值）。</p>
+<p>根据所给的结构体定义：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">arduinoCopy codestruct &#123;
+    char type;
+    int num;
+    char name[10];
+&#125; res;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中，type是1字节，num是4字节，name是10字节，因此，总共占用的字节数为1 + 4 + 10 &#x3D; 15字节。</p>
+<p>由于按4字节对齐，则对于char类型的type和char类型的name数组，它们的对齐大小是1字节，已经满足对齐要求；而对于int类型的num，由于其占用的字节数是4字节，因此需要将结构体的偏移量调整到4的倍数，即在type后面添加3个填充字节，使得num从第5个字节开始，这样就满足了按照4字节对齐的要求。最后的结果必须为4的倍数。因此，sizeof(res)的结果应该是20字节。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#define ADD(x) x*x
+void main()
+&#123;
+int a&#x3D;4,b&#x3D;6,c&#x3D;7,d&#x3D;ADD(a+b)*c;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>d为多少?</p>
+<p>解析：当预处理器处理代码时，它会根据宏定义的规则，将代码中的宏名称展开成相应的宏定义。在展开过程中，预处理器会先将宏名称与宏定义中的参数列表匹配，然后将参数值替换到宏定义中相应的位置上。例如，在这个宏定义中，ADD(x)将被展开为x*x。</p>
+<p>当代码中出现ADD(a+b)时，预处理器会将ADD替换成x<em>x，同时将a+b替换成x，得到的表达式为x</em>x(x&#x3D;a+b)，然后编译器会对这个表达式进行计算。<strong>由于没有括号，这个表达式会被编译器解析为a+b<em>a+b，而不是期望的(a+b)</em>(a+b)。</strong></p>
+<p>因此，为了避免这种错误，我们通常会在宏定义中加入括号，例如#define ADD(x) ((x)*(x))，这样展开后的表达式就会正确地按照运算符的优先级进行计算。</p>
+<p>*<em>宏定义只是简单的文本替换，并不会进行运算的优先级,所以做种结果为ADD(a+b)<em>c &#x3D;  a+ba+b</em>c &#x3D; 70</em>*</p>
+<p><strong>假设指针p1已经指向某个整型变量值，要使指针p2也指向同一变量，则下面各项中正确的是</strong></p>
+<p><strong>A、p2&#x3D;&amp;p1;</strong></p>
+<p><strong>B、p2&#x3D;&amp;&amp;p1;</strong></p>
+<p><strong>C、p2&#x3D;p1;</strong></p>
+<p>*<em>D、p2&#x3D;<em>p1;</em></em></p>
+<p>解析：两个同为指针，直接赋值即可，故选C</p>
+<p><img src="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230403165219.png"></p>
+<p>解析：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> cust_id<span class="token punctuation">,</span> order_date  <span class="token comment"># 这个SELECT子句指定了查询结果中要返回的列，即顾客ID和订单日期。</span>
+<span class="token keyword">FROM</span> Orders <span class="token comment">#这个FROM子句指定了要从哪个表中检索数据，即Orders表。</span>
+<span class="token keyword">WHERE</span> order_num <span class="token operator">IN</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> order_num
+    <span class="token keyword">FROM</span> Orderltems
+    <span class="token keyword">WHERE</span> prod_id <span class="token operator">=</span> <span class="token string">'BR01'</span>
+<span class="token punctuation">)</span>   <span class="token comment"># 这个WHERE子句指定了筛选条件，即只返回哪些些订单号(order_num)在Orderltems表中对应的prod_id为'BR01'的订单。它使用了一个子查询来查找符合条件的订单号，然后在主查询中使用IN运算符将这些订单号与Orders表中的数据进行匹配。</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> order_date <span class="token keyword">ASC</span><span class="token punctuation">;</span>
+<span class="token comment"># 这个ORDER BY子句指定了结果的排序方式，即按订单日期(order_date)升序排序。它将结果按照指定的列的值进行排序，可以使用ASC表示升序，也可以使用DESC表示降序排序。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230403170007.png"></p>
+<p>解析：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> c<span class="token punctuation">.</span>cust_name<span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num<span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>quantity <span class="token operator">*</span> i<span class="token punctuation">.</span>item_price<span class="token punctuation">)</span> <span class="token keyword">AS</span> OrderTotal 
+<span class="token comment"># 这一行是查询语句的核心部分。它指定了要查询哪些列的数据以及如何计算订单总金额。具体来说：</span>
+<span class="token comment">#c.cust_name表示查询Customers表中的cust_name列，即客户名称。</span>
+<span class="token comment">#o.order_num表示查询Orders表中的order_num列，即订单号。</span>
+<span class="token comment">#SUM(i.quantity * i.item_price)表示查询Orderltems表中的quantity和item_price两列的乘积之和，即订单总金额。SUM()是一个聚合函数，用于计算给定列的所有#值的总和。在这里，我们将quantity和item_price两列相乘，然后求和，得到每个订单的总金额。</span>
+<span class="token keyword">FROM</span> Customers c
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> Orders o <span class="token keyword">ON</span> c<span class="token punctuation">.</span>cust_id <span class="token operator">=</span> o<span class="token punctuation">.</span>cust_id
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> Orderltems i <span class="token keyword">ON</span> o<span class="token punctuation">.</span>order_num <span class="token operator">=</span> i<span class="token punctuation">.</span>order_num
+<span class="token comment">#这一部分指定了从哪些表中获取数据。具体来说：</span>
+<span class="token comment">#FROM后面的Customers c表示我们要从名为Customers的表中获取数据，并将其别名为c，以便在查询语句中引用。</span>
+<span class="token comment">#INNER JOIN表示我们要进行表连接操作。在这个查询中，我们要连接Customers、Orders和Orderltems这三个表。INNER JOIN表示只查询那些在两个表中都存在的记录。如果一个客户在Customers表中不存在，那么该客户的订单将不会被查询出来。</span>
+<span class="token comment">#ON后面的条件表示表连接的条件。在这个查询中，我们要根据cust_id和order_num这两个字段将Customers、Orders和Orderltems这三个表连接起来，即：</span>
+<span class="token comment">#Customers表中的cust_id与Orders表中的cust_id相等。</span>
+<span class="token comment">#Orders表中的order_num与Orderltems表中的order_num相等。</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> c<span class="token punctuation">.</span>cust_name<span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num
+<span class="token comment"># 这一部分指定了分组条件。由于我们要计算每个订单的总金额，因此需要对查询结果进行分组，以便计算每个订单的总金额。具体来说：</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> c<span class="token punctuation">.</span>cust_name<span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num <span class="token keyword">ASC</span><span class="token punctuation">;</span>
+<span class="token comment"># ORDER BY后面的列名指定了排序的依据。在这个查询中，我们要按照客户名称和订单号对查询结果进行排序。</span>
+<span class="token comment"># ASC表示按照升序排列，如果不指定，默认为升序。如果要降序排列，可以使用DESC关键字。</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230403171021.png"></p>
+<p>解析：</p>
+<p>相信这个就不用再过多解释了</p>
+<p><strong>INNER JOIN:</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> c<span class="token punctuation">.</span>cust_name<span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num
+<span class="token keyword">FROM</span> Customers c
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> Orders o <span class="token keyword">ON</span> c<span class="token punctuation">.</span>cust_id <span class="token operator">=</span> o<span class="token punctuation">.</span>cust_id
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> c<span class="token punctuation">.</span>cust_name <span class="token keyword">ASC</span><span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num <span class="token keyword">ASC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>等联结语法：</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> c<span class="token punctuation">.</span>cust_name<span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num
+<span class="token keyword">FROM</span> Customers c<span class="token punctuation">,</span> Orders o
+<span class="token keyword">WHERE</span> c<span class="token punctuation">.</span>cust_id <span class="token operator">=</span> o<span class="token punctuation">.</span>cust_id
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> c<span class="token punctuation">.</span>cust_name <span class="token keyword">ASC</span><span class="token punctuation">,</span> o<span class="token punctuation">.</span>order_num <span class="token keyword">ASC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230403171028.png"></p>
+<p>解析：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+&#x2F;&#x2F; 判断一个数是否为超完全数字不变数
+bool isPerfectNumber(int n) &#123;
+    int sum &#x3D; 0;
+    int temp &#x3D; n;
+    int num_digits &#x3D; 0;
+    while (temp &gt; 0) &#123;
+        num_digits++;  &#x2F;&#x2F; 位数加1
+        temp &#x2F;&#x3D; 10;   &#x2F;&#x2F; 将temp除以10，向下取整，相当于去掉temp的个位数字
+    &#125;
+    temp &#x3D; n; &#x2F;&#x2F; 重新将n赋给temp
+    while (temp &gt; 0) &#123;
+        int digit &#x3D; temp % 10;     &#x2F;&#x2F; 对10取余数（取temp的个位数字）
+        sum +&#x3D; pow(digit, num_digits);  &#x2F;&#x2F; 将该数字的N次方加入sum中（C 库函数 double pow(double x, double y) 返回 x 的 y 次幂）
+        temp &#x2F;&#x3D; 10;  &#x2F;&#x2F; 去掉个位数字，进入下一轮循环
+    &#125;
+    return (sum &#x3D;&#x3D; n);  &#x2F;&#x2F; 判断是否为超完全数字不变数
+&#125;
+
+&#x2F;&#x2F; 输出小于n的所有超完全数字不变数的倒序排列
+void printPerfectNumbers(int n) &#123;
+    for (int i &#x3D; 10; i &lt; n; i++) &#123;
+        if (isPerfectNumber(i)) &#123;
+            cout &lt;&lt; i &lt;&lt; endl;
+        &#125;
+    &#125;
+&#125;
+
+int main() &#123;
+    int n;
+    cin &gt;&gt; n;
+    printPerfectNumbers(n);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/03/29/%E9%A2%98%E8%A7%A3-%E8%AE%A1%E7%AE%97%E6%9F%90%E5%AD%97%E6%AF%8D%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0/">题解 | 计算某字母出现次数</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/%E7%AC%94%E8%AF%95/" rel="tag">笔试</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/">恒生C++实习生笔试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E9%A2%98%E8%A7%A3-%E8%AE%A1%E7%AE%97%E6%9F%90%E5%AD%97%E6%AF%8D%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0/">题解 | 计算某字母出现次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/c-getline-%E5%87%BD%E6%95%B0/">c++ getline() 函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/C-%E4%B8%AD%E7%9A%84size-%E3%80%81sizeof-%E3%80%81strlen-%E3%80%81str-length/">C++中的size()、sizeof() 、strlen()、str.length()</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%88%B7%E9%A2%98-%E7%AC%94%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B9%8B%E2%80%94%E2%80%94C-%E4%B8%87%E8%83%BD%E5%A4%B4%E6%96%87%E4%BB%B6/">刷题/笔试技巧之——C++万能头文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
