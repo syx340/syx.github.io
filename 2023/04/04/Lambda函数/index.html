@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>Lambda函数 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="Lambda函数"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>Lambda函数</h2>
+            <div class="post-meta">
+                <time class="date">2023.04.04</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p><strong>Lambda函数也叫匿名函数，是自定义函数的一种,专指用关键字” lambda”定义的无名短函数，所以也有Lambda表达式这种说法。</strong>这种函数得名于省略了用def声明函数的标准步骤，是C++ 11中新增的特性。</p>
+<h2 id="一-函数语法"><a href="#一-函数语法" class="headerlink" title="一 函数语法"></a>一 函数语法</h2><p>我们平时调用函数的时候，都是需要被调用函数的函数名，但是匿名函数就不需要函数名，而且直接写在需要调用的地方，对于以前没用过的小伙伴来说，第一眼看见了这语法可能很迷惑。<br><strong>C++11的基本语法格式：</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">[capture](parameters) -&gt; return_type &#123; &#x2F;* ... *&#x2F; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（1） <strong>[capture] ：</strong>[]内为外部变量的传递方式，值、引用等，如下</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">[]        &#x2F;&#x2F; 表示的是在lambda定义之前的域，对外部参数的调用；
+[&#x3D;]       &#x2F;&#x2F; 表示外部参数直接传值
+[&amp;]       &#x2F;&#x2F; 表示外部参数传引用，可修改值。当默认捕获符是 &amp; 时，后继的简单捕获符必须不以 &amp; 开始。而当默认捕获符是 &#x3D; 时，后继的简单捕获符必须以 &amp; 开始。
+[x, &amp;y]   &#x2F;&#x2F; x is captured by value, y is captured by reference
+[&amp;, x]    &#x2F;&#x2F; x is explicitly captured by value. Other variables will be captured by reference
+[&#x3D;, &amp;z]   &#x2F;&#x2F; z is explicitly captured by reference. Other variables will be captured by value<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）(parameters) ：（）内为形参，和普通函数的形参一样。<br>（3）-&gt; return_type：-&gt;后面为lambda函数的返回类型，如 -&gt; int、-&gt; string等。一般情况下，编译器推出lambda函数的返回值，所以这部分可以省略不写。<br>（4）{ &#x2F;* … *&#x2F; }：{}内为函数主体，和普通函数一样。</p>
+<h2 id="二-函数应用"><a href="#二-函数应用" class="headerlink" title="二 函数应用"></a>二 函数应用</h2><h3 id="1、在普通函数中使用"><a href="#1、在普通函数中使用" class="headerlink" title="1、在普通函数中使用"></a><strong>1、在普通函数中使用</strong></h3><p>首先是<strong>定义，执行下面这句，不会运行函数 ！！！</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::function&lt;int(int,int)&gt; addFunction&#x3D; [](int a,int b) -&gt;int &#123;  return a + b; &#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上面代码，你知道lambda函数返回类型为int类型，但是函数左边不能直接赋值给int变量（编译器会报错），因为此处为lambda函数的定义，所以左边为函数指针类型变量，一般懒得写函数指针类型，就直接赋值给auto类型变量，如下。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">auto addFunction &#x3D; [](int a,int b) -&gt;int &#123;  return a + b;   &#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>下面才是函数的使用、运行！！！</strong><br>如何运行lambda函数并获取函数返回值？执行函数需要看下面代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">auto addFunction&#x3D; [](int a,int b) -&gt;int &#123;  return a + b;   &#125;;
+int result  &#x3D; addFunction(1,2);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>又或者如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">auto addFunction&#x3D; [](int a,int b) -&gt;int &#123;  return a + b;   &#125;;
+int(*func_ptr)(int,int) &#x3D; addFunction;
+int result &#x3D; func_ptr(1,2);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、在qt信号槽绑定中使用"><a href="#2、在qt信号槽绑定中使用" class="headerlink" title="2、在qt信号槽绑定中使用"></a><strong>2、在qt信号槽绑定中使用</strong></h3><p>我觉得labmda函数非常适合在信号槽中使用。<br>（1）返回的函数指针可以直接用在connect函数中，刚好契合。<br>（2）该槽函数可能比较简单，只有这个地方使用，可以省去槽函数声明，使代码看上去更加简便，且业务代码更加集中。<br><strong>基本使用</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">connect(sys, &amp;SYSClass::sig_1, this, [&#x3D;](int index)
+&#123;
+    ......
+&#125;);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 绑定信号槽的时候定义lambda函数，当收到信号的时候才执行槽函数，即lambda函数。<br><strong>使用示范</strong><br>在mTime时间后执行动画，动画执行后delete对象，非常适合弹窗关闭时，窗口关闭的动画操作。（<code>widgetPtr</code>为弹窗的指针）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">QTimer::singleShot(mTime,widgetPtr,[&#x3D;]()
+&#123;
+    QPropertyAnimation *pAnimation &#x3D; new QPropertyAnimation(widgetPtr,&quot;windowOpacity&quot;,widgetPtr);
+    pAnimation-&gt;setDuration(1000);
+    pAnimation-&gt;setEasingCurve(QEasingCurve::InCirc);
+    pAnimation-&gt;setStartValue(1.0);
+    pAnimation-&gt;setEndValue(0.0);
+    pAnimation-&gt;start();
+    connect(pAnimation,&amp;QPropertyAnimation::finished,[&#x3D;]&#123;
+        delete widgetPtr;
+    &#125;);
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3、在函数回调中使用（std-sort排序函数为例子）"><a href="#3、在函数回调中使用（std-sort排序函数为例子）" class="headerlink" title="3、在函数回调中使用（std::sort排序函数为例子）"></a>3、在函数回调中使用（std::sort排序函数为例子）</h3><p>在标准库的排序函数使用中，可以使用函数回调的方式自定义排序的比较规则。<br>（1）sort函数提供排序算法；（2）floatList为容器变量，提供数据结构和数据；（3）他们两个之间使用迭代器连接。理解如下图：</p>
+<p><img src="/2023/04/04/Lambda%E5%87%BD%E6%95%B0/image-20230404211824241.png" alt="image-20230404211824241"></p>
+<p>而我们sort函数可以使用第三个参数（函数回调方式）作为比较依据进行排序，该参数就可以写成lambda函数，这样比较方法写在排序函数这里，可以使得代码更加直白、简便、集中。参考代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::sort( floatList, floatList + N, [](float a, float b) 
+		&#123;
+            return a &lt; b;
+        &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面lambda函数，是sort函数中的迭代器每次运行做排序比较的时候就调用。<br><strong>注意：</strong><br>（1）lambda函数参数为（ float , float ），类型必须与容器的元素类型一致。<br>（2）运行时，迭代器自动帮你把参数传入回调函数。<br><strong>（3）回调函数返回值固定为bool，这里可以不写，由编译器自动确定。</strong></p>
+<h2 id="三-总结"><a href="#三-总结" class="headerlink" title="三 总结"></a><strong>三 总结</strong></h2><p>​		<strong>lambda函数定义后返回的是函数指针类型，</strong>即如：std::function&lt;int(int,int)&gt;，所以一般很少使用，我们在很多代码中也很少看到。<br>​		正常情况下，<strong>lambda函数相对普通函数的定义和使用其实没什么优势。但是某些使用到函数指针的场合下，我们就可以酌情考虑使用，特别是函数指针作为函数参数的时候，</strong>比如qt的信号槽、回调函数等，使用起来即方便，又显得代码高大上，简直就完美O(∩_∩)O。</p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/">C++11新特性</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" rel="tag">匿名函数  Lambda函数</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/Lambda%E5%87%BD%E6%95%B0/">Lambda函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/">C++11新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/03/STL/">STL</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/">恒生C++实习生笔试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E9%A2%98%E8%A7%A3-%E8%AE%A1%E7%AE%97%E6%9F%90%E5%AD%97%E6%AF%8D%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0/">题解 | 计算某字母出现次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/c-getline-%E5%87%BD%E6%95%B0/">c++ getline() 函数</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" style="font-size: 10px;">匿名函数  Lambda函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
