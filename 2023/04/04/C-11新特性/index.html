@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>C++11新特性 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="C++11新特性"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>C++11新特性</h2>
+            <div class="post-meta">
+                <time class="date">2023.04.04</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h2 id="1、C-11有哪些新特性？"><a href="#1、C-11有哪些新特性？" class="headerlink" title="1、C++ 11有哪些新特性？"></a>1、C++ 11有哪些新特性？</h2><p>nullptr替代 NULL<br>引入了 auto 和 decltype 这两个关键字实现了类型推导<br>基于范围的 for 循环for(auto&amp; i : res){}<br>类和结构体的中初始化列表<br>Lambda 表达式（匿名函数）<br>std::forward_list（单向链表）<br>右值引用和move语义<br>…</p>
+<h2 id="2、auto、decltype和decltype-auto-的用法"><a href="#2、auto、decltype和decltype-auto-的用法" class="headerlink" title="2、auto、decltype和decltype(auto)的用法"></a>2、auto、decltype和decltype(auto)的用法</h2><h3 id="（1）auto"><a href="#（1）auto" class="headerlink" title="（1）auto"></a>（1）auto</h3><p>C++11新标准引入了auto类型说明符，用它就能让编译器替我们去分析表达式所属的类型。和原来那些只对应某种特定的类型说明符(例如 int)不同，</p>
+<p>auto 让编译器通过初始值来进行类型推演。从而获得定义变量的类型，所以说 auto 定义的变量必须有初始值。</p>
+<p>举个例子：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">//</span>普通；类型
+<span class="token builtin">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+auto c <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span><span class="token operator">//</span> c为<span class="token builtin">int</span>型
+
+<span class="token operator">//</span>const类型
+const <span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+auto j <span class="token operator">=</span> i<span class="token punctuation">;</span> <span class="token operator">//</span> 变量i是顶层const<span class="token punctuation">,</span> 会被忽略<span class="token punctuation">,</span> 所以j的类型是<span class="token builtin">int</span>
+auto k <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span> <span class="token operator">//</span> 变量i是一个常量<span class="token punctuation">,</span> 对常量取地址是一种底层const<span class="token punctuation">,</span> 所以b的类型是const <span class="token builtin">int</span><span class="token operator">*</span>
+const auto l <span class="token operator">=</span> i<span class="token punctuation">;</span> <span class="token operator">//</span>如果希望推断出的类型是顶层const的<span class="token punctuation">,</span> 那么就需要在auto前面加上cosnt
+
+<span class="token operator">//</span>引用和指针类型
+<span class="token builtin">int</span> x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token builtin">int</span><span class="token operator">&amp;</span> y <span class="token operator">=</span> x<span class="token punctuation">;</span>
+auto z <span class="token operator">=</span> y<span class="token punctuation">;</span> <span class="token operator">//</span>z是<span class="token builtin">int</span>型不是<span class="token builtin">int</span><span class="token operator">&amp;</span> 型
+auto<span class="token operator">&amp;</span> p1 <span class="token operator">=</span> y<span class="token punctuation">;</span> <span class="token operator">//</span>p1是<span class="token builtin">int</span><span class="token operator">&amp;</span>型
+auto p2 <span class="token operator">=</span> <span class="token operator">&amp;</span>x<span class="token punctuation">;</span> <span class="token operator">//</span>p2是指针类型<span class="token builtin">int</span><span class="token operator">*</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="（2）decltype"><a href="#（2）decltype" class="headerlink" title="（2）decltype"></a>（2）decltype</h3><p>有的时候我们还会遇到这种情况，<strong>我们希望从表达式中推断出要定义变量的类型，但却不想用表达式的值去初始化变量。</strong>还有可能是函数的返回类型为某表达式的值类型。在这些时候auto显得就无力了，所以C++11又引入了第二种类型说明符decltype，它的作用是选择并返回操作数的数据类型。在此过程中，编译器只是分析表达式并得到它的类型，却不进行实际的计算表达式的值。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">int</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token operator">//</span>普通类型
+decltype<span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token builtin">sum</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token operator">//</span> <span class="token builtin">sum</span>的类型是函数func<span class="token punctuation">(</span><span class="token punctuation">)</span>的返回值的类型<span class="token builtin">int</span><span class="token punctuation">,</span> 但是这时不会实际调用函数func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token builtin">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+decltype<span class="token punctuation">(</span>a<span class="token punctuation">)</span> b <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token operator">//</span> a的类型是<span class="token builtin">int</span><span class="token punctuation">,</span> 所以b的类型也是<span class="token builtin">int</span>
+
+<span class="token operator">//</span>不论是顶层const还是底层const<span class="token punctuation">,</span> decltype都会保留   
+const <span class="token builtin">int</span> c <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+decltype<span class="token punctuation">(</span>c<span class="token punctuation">)</span> d <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token operator">//</span> d的类型和c是一样的<span class="token punctuation">,</span> 都是顶层const
+<span class="token builtin">int</span> e <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+const <span class="token builtin">int</span><span class="token operator">*</span> f <span class="token operator">=</span> <span class="token operator">&amp;</span>e<span class="token punctuation">;</span> <span class="token operator">//</span> f是底层const
+decltype<span class="token punctuation">(</span>f<span class="token punctuation">)</span> g <span class="token operator">=</span> f<span class="token punctuation">;</span> <span class="token operator">//</span> g也是底层const
+
+<span class="token operator">//</span>引用与指针类型
+<span class="token operator">//</span><span class="token number">1.</span> 如果表达式是引用类型<span class="token punctuation">,</span> 那么decltype的类型也是引用
+const <span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>j <span class="token operator">=</span> i<span class="token punctuation">;</span>
+decltype<span class="token punctuation">(</span>j<span class="token punctuation">)</span> k <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token operator">//</span> k的类型是 const <span class="token builtin">int</span><span class="token operator">&amp;</span>
+
+<span class="token operator">//</span><span class="token number">2.</span> 如果表达式是引用类型<span class="token punctuation">,</span> 但是想要得到这个引用所指向的类型<span class="token punctuation">,</span> 需要修改表达式<span class="token punctuation">:</span>
+<span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>r <span class="token operator">=</span> i<span class="token punctuation">;</span>
+decltype<span class="token punctuation">(</span>r <span class="token operator">+</span> <span class="token number">0</span><span class="token punctuation">)</span> t <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token operator">//</span> 此时是<span class="token builtin">int</span>类型
+
+<span class="token operator">//</span><span class="token number">3.</span> 对指针的解引用操作返回的是引用类型
+<span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+decltype<span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span> c <span class="token operator">=</span> j<span class="token punctuation">;</span> <span class="token operator">//</span> c是<span class="token builtin">int</span><span class="token operator">&amp;</span>类型<span class="token punctuation">,</span> c和j绑定在一起
+
+<span class="token operator">//</span><span class="token number">4.</span> 如果一个表达式的类型不是引用<span class="token punctuation">,</span> 但是我们需要推断出引用<span class="token punctuation">,</span> 那么可以加上一对括号<span class="token punctuation">,</span> 就变成了引用类型了
+<span class="token builtin">int</span> i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+decltype<span class="token punctuation">(</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> <span class="token operator">//</span> 此时j的类型是<span class="token builtin">int</span><span class="token operator">&amp;</span>类型<span class="token punctuation">,</span> j和i绑定在了一起<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="（3）decltype-auto"><a href="#（3）decltype-auto" class="headerlink" title="（3）decltype(auto)"></a>（3）decltype(auto)</h3><p>decltype(auto)是C++14新增的类型指示符，可以用来声明变量以及指示函数返回类型。在使用时，会将“&#x3D;”号左边的表达式替换掉auto，再根据decltype的语法规则来确定类型。举个例子：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">int</span> e <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+const <span class="token builtin">int</span><span class="token operator">*</span> f <span class="token operator">=</span> <span class="token operator">&amp;</span>e<span class="token punctuation">;</span> <span class="token operator">//</span> f是底层const
+decltype<span class="token punctuation">(</span>auto<span class="token punctuation">)</span> j <span class="token operator">=</span> f<span class="token punctuation">;</span><span class="token operator">//</span>j的类型是const <span class="token builtin">int</span><span class="token operator">*</span> 并且指向的是e<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3、C-中NULL和nullptr区别"><a href="#3、C-中NULL和nullptr区别" class="headerlink" title="3、C++中NULL和nullptr区别"></a>3、C++中NULL和nullptr区别</h2><p>NULL来自C语言，一般由宏定义实现，而 nullptr 则是C++11的新增关键字。<strong>在C语言中，NULL被定义为(void*)0,而在C++语言中，NULL则被定义为整数0</strong>。编译器一般对其实际定义如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#ifdef __cplusplus</span>
+<span class="token comment">#define NULL 0</span>
+<span class="token comment">#else  </span>
+<span class="token comment">#define NULL ((void *)0)   // 定义一个空指针</span>
+<span class="token comment">#endif</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在C++中指针必须有明确的类型定义。但是将NULL定义为0带来的另一个问题是无法与整数的0区分。因为C++中允许有函数重载，所以可以试想如下函数定义情况：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#include &lt;iostream></span>
+using namespace std<span class="token punctuation">;</span>
+
+void fun<span class="token punctuation">(</span>char<span class="token operator">*</span> p<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"char*"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+void fun<span class="token punctuation">(</span><span class="token builtin">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"int"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token builtin">int</span> main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    fun<span class="token punctuation">(</span>NULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">//</span>输出结果：<span class="token builtin">int</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>那么在传入NULL参数时，会把NULL当做整数0来看，如果我们想调用参数是指针的函数，该怎么办呢?。<strong>nullptr在C++11被引入用于解决这一问题，nullptr可以明确区分整型和指针类型，能够根据环境自动转换成相应的指针类型，但不会被转换为任何整型，所以不会造成参数传递错误。</strong></p>
+<p>nullptr的一种实现方式如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">const <span class="token keyword">class</span> <span class="token class-name">nullptr_t</span><span class="token punctuation">&#123;</span>
+public<span class="token punctuation">:</span>
+    template<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>  inline operator T<span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> const<span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+    template<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">C</span><span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span> inline operator T C<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> const <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+private<span class="token punctuation">:</span>
+    void operator<span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token punctuation">)</span> const<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> nullptr <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以上通过模板类和运算符重载的方式来对不同类型的指针进行实例化从而解决了(void*)指针带来参数类型不明的问题，<strong>另外由于nullptr是明确的指针类型，所以不会与整形变量相混淆。</strong>但nullptr仍然存在一定问题，例如：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#include &lt;iostream></span>
+using namespace std<span class="token punctuation">;</span>
+
+void fun<span class="token punctuation">(</span>char<span class="token operator">*</span> p<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    cout<span class="token operator">&lt;&lt;</span> <span class="token string">"char* p"</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+void fun<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token operator">*</span> p<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    cout<span class="token operator">&lt;&lt;</span> <span class="token string">"int* p"</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+void fun<span class="token punctuation">(</span><span class="token builtin">int</span> p<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    cout<span class="token operator">&lt;&lt;</span> <span class="token string">"int p"</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token builtin">int</span> main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    fun<span class="token punctuation">(</span><span class="token punctuation">(</span>char<span class="token operator">*</span><span class="token punctuation">)</span>nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">//</span>语句<span class="token number">1</span>
+    fun<span class="token punctuation">(</span>nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">//</span>语句<span class="token number">2</span>
+    fun<span class="token punctuation">(</span>NULL<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">//</span>语句<span class="token number">3</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">//</span> 运行结果：
+<span class="token operator">//</span> 语句<span class="token number">1</span>：char<span class="token operator">*</span> p
+<span class="token operator">//</span> 语句<span class="token number">2</span><span class="token punctuation">:</span>报错，有多个匹配
+<span class="token operator">//</span> <span class="token number">3</span>：<span class="token builtin">int</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​		在这种情况下存在对<strong>不同指针类型的函数重载</strong>，此时如果传入nullptr指针则仍然存在无法区分应实际调用哪个函数，这种情况下必须显示的指明参数类型。</p>
+<h2 id="4、智能指针的原理、常用的智能指针及实现"><a href="#4、智能指针的原理、常用的智能指针及实现" class="headerlink" title="4、智能指针的原理、常用的智能指针及实现"></a>4、智能指针的原理、常用的智能指针及实现</h2><p><strong>原理</strong></p>
+<p><strong>智能指针是一个类，用来存储指向动态分配对象的指针，负责自动释放动态分配的对象，防止堆内存泄漏。动态分配的资源，交给一个类对象去管理，当类对象声明周期结束时，自动调用析构函数释放资源</strong></p>
+<p><strong>常用的智能指针</strong></p>
+<h3 id="1-shared-ptr"><a href="#1-shared-ptr" class="headerlink" title="(1) shared_ptr"></a>(1) shared_ptr</h3><p>实现原理：采用引用计数器的方法，允许多个智能指针指向同一个对象，每当多一个指针指向该对象时，指向该对象的所有智能指针内部的引用计数加1，每当减少一个智能指针指向对象时，引用计数会减1，当计数为0的时候会自动的释放动态分配的资源。</p>
+<ul>
+<li>智能指针将一个计数器与类指向的对象相关联，引用计数器跟踪共有多少个类对象共享同一指针</li>
+<li>每次创建类的新对象时，初始化指针并将引用计数置为1</li>
+<li>当对象作为另一对象的副本而创建时，拷贝构造函数拷贝指针并增加与之相应的引用计数</li>
+<li>对一个对象进行赋值时，赋值操作符减少左操作数所指对象的引用计数（如果引用计数为减至0，则删除对象），并增加右操作数所指对象的引用计数</li>
+<li>调用析构函数时，构造函数减少引用计数（如果引用计数减至0，则删除基础对象）</li>
+</ul>
+<h3 id="2-unique-ptr"><a href="#2-unique-ptr" class="headerlink" title="(2) unique_ptr"></a>(2) unique_ptr</h3><p>unique_ptr采用的是独享所有权语义，一个非空的unique_ptr总是拥有它所指向的资源。转移一个unique_ptr将会把所有权全部从源指针转移给目标指针，源指针被置空；所以unique_ptr不支持普通的拷贝和赋值操作，不能用在STL标准容器中；局部变量的返回值除外（因为编译器知道要返回的对象将要被销毁）；如果你拷贝一个unique_ptr，那么拷贝结束后，这两个unique_ptr都会指向相同的资源，造成在结束时对同一内存指针多次释放而导致程序崩溃。</p>
+<h3 id="3-weak-ptr"><a href="#3-weak-ptr" class="headerlink" title="(3) weak_ptr"></a>(3) weak_ptr</h3><p>weak_ptr：弱引用。 <strong>引用计数有一个问题就是互相引用形成环（环形引用），这样两个指针指向的内存都无法释放。需要使用weak_ptr打破环形引用。weak_ptr是一个弱引用，它是为了配合shared_ptr而引入的一种智能指针，它指向一个由shared_ptr管理的对象而不影响所指对象的生命周期，也就是说，它只引用，不计数。</strong>如果一块内存被shared_ptr和weak_ptr同时引用，当所有shared_ptr析构了之后，不管还有没有weak_ptr引用该内存，内存也会被释放。所以weak_ptr不保证它指向的内存一定是有效的，在使用之前使用函数lock()检查weak_ptr是否为空指针。</p>
+<ul>
+<li><strong>环形引用</strong></li>
+</ul>
+<p>如果你仔细思考 <code>std::shared_ptr</code> 就会发现依然存在着资源无法释放的问题。看下面这个例子：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">struct A;
+struct B;
+
+struct A &#123;
+    std::shared_ptr&lt;B&gt; pointer;
+    ~A() &#123;
+        std::cout &lt;&lt; &quot;A 被销毁&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;;
+struct B &#123;
+    std::shared_ptr&lt;A&gt; pointer;
+    ~B() &#123;
+        std::cout &lt;&lt; &quot;B 被销毁&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;;
+int main() &#123;
+    auto a &#x3D; std::make_shared&lt;A&gt;();
+    auto b &#x3D; std::make_shared&lt;B&gt;();
+    a-&gt;pointer &#x3D; b;
+    b-&gt;pointer &#x3D; a;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行结果是 A, B 都不会被销毁，这是因为 a,b 内部的 pointer 同时又引用了 a,b，这使得 a,b 的引用计数均变为了 2，而离开作用域时，a,b 智能指针被析构，却只能造成这块区域的引用计数减一，这样就导致了 a,b 对象指向的内存区域引用计数不为零，而外部已经没有办法找到这块区域了，也就造成了内存泄露，如图：</p>
+<p><img src="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/image-20230404133644065.png" alt="image-20230404133644065"></p>
+<p>解决这个问题的办法就是使用弱引用指针 <code>std::weak_ptr</code>，<code>std::weak_ptr</code>是一种弱引用（相比较而言 <code>std::shared_ptr</code> 就是一种强引用）。弱引用不会引起引用计数增加，当换用弱引用时候，最终的释放流程如图:</p>
+<p><img src="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/image-20230404133831791.png" alt="image-20230404133831791"></p>
+<p>在上图中，最后一步只剩下 B，而 B 并没有任何智能指针引用它，因此这块内存资源也会被释放。</p>
+<p>std::weak_ptr 没有 * 运算符和 -&gt; 运算符，所以不能够对资源进行操作，它可以用于检查 std::shared_ptr 是否存在，其 expired() 方法能在资源未被释放时，会返回 false，否则返回 true；除此之外，它也可以用于获取指向原始对象的 std::shared_ptr 指针，其 lock() 方法在原始对象未被释放时，返回一个指向原始对象的 std::shared_ptr 指针，进而访问原始对象的资源，否则返回nullptr。</p>
+<h3 id="4-auto-ptr"><a href="#4-auto-ptr" class="headerlink" title="(4) auto_ptr"></a><strong>(4) auto_ptr</strong></h3><p>主要是为了解决“有异常抛出时发生内存泄漏”的问题 。因为发生异常而无法正常释放内存。</p>
+<p>auto_ptr有拷贝语义，拷贝后源对象变得无效，这可能引发很严重的问题；而unique_ptr则无拷贝语义，但提供了移动语义，这样的错误不再可能发生，因为很明显必须使用std::move()进行转移。</p>
+<p>auto_ptr不支持拷贝和赋值操作，不能用在STL标准容器中。STL容器中的元素经常要支持拷贝、赋值操作，在这过程中auto_ptr会传递所有权，所以不能在STL中使用。</p>
+<h2 id="5、说一说你了解的关于lambda函数的全部知识"><a href="#5、说一说你了解的关于lambda函数的全部知识" class="headerlink" title="5、说一说你了解的关于lambda函数的全部知识"></a>5、说一说你了解的关于<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=lambda%E5%87%BD%E6%95%B0&spm=1001.2101.3001.7020">lambda函数</a>的全部知识</h2><ol>
+<li><p>利用lambda表达式可以编写内嵌的匿名函数，用以替换独立函数或者函数对象；</p>
+</li>
+<li><p>每当你定义一个lambda表达式后，编译器会自动生成一个匿名类（这个类当然重载了()运算符），我们称为闭包类型（closure type）。那么在运行时，这个lambda表达式就会返回一个匿名的闭包实例，其实一个右值。所以，我们上面的lambda表达式的结果就是一个个闭包。闭包的一个强大之处是其可以通过传值或者引用的方式捕捉其封装作用域内的变量，前面的方括号就是用来定义捕捉模式以及变量，我们又将其称为lambda捕捉块。</p>
+</li>
+<li><p>值捕获、引用捕获都是已经在外层作用域声明的变量，因此这些捕获方式捕获的均为左值，而不能捕获右值。</p>
+<pre class="line-numbers language-none"><code class="language-none">[捕获列表](参数列表) mutable(可选) 异常属性 -&gt; 返回类型 &#123;
+&#x2F;&#x2F; 函数体
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>C++14 给与了我们方便，允许捕获的成员用任意的表达式进行初始化，这就允许了右值的捕获， 被声明的捕获变量类型会根据表达式进行判断，判断方式与使用 <code>auto</code> 本质上是相同的：</p>
+</li>
+</ol>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;memory&gt;  &#x2F;&#x2F; std::make_unique
+#include &lt;utility&gt; &#x2F;&#x2F; std::move
+
+void lambda_expression_capture() &#123;
+    auto important &#x3D; std::make_unique&lt;int&gt;(1);
+    auto add &#x3D; [v1 &#x3D; 1, v2 &#x3D; std::move(important)](int x, int y) -&gt; int &#123;
+        return x+y+v1+(*v2);
+    &#125;;
+    std::cout &lt;&lt; add(3,4) &lt;&lt; std::endl;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在上面的代码中，important 是一个独占指针，是不能够被 “&#x3D;” 值捕获到，这时候我们可以将其转移为右值，在表达式中初始化。</p>
+<ol>
+<li>lambda必须使用尾置返回来指定返回类型，可以忽略参数列表和返回值，但必须永远包含捕获列表和函数体；</li>
+</ol>
+<h2 id="6、说说你了解的auto-ptr作用"><a href="#6、说说你了解的auto-ptr作用" class="headerlink" title="6、说说你了解的auto_ptr作用"></a>6、说说你了解的auto_ptr作用</h2><p>​		auto_ptr的出现，<strong>主要是为了解决“有异常抛出时发生内存泄漏”的问题；抛出异常，将导致指针p所指向的空间得不到释放而导致内存泄漏；</strong><br>​		auto_ptr构造时取得某个对象的控制权，在析构时释放该对象。我们实际上是创建一个auto_ptr类型的局部对象，该局部对象析构时，会将自身所拥有的指针空间释放，所以不会有内存泄漏；<br>​		auto_ptr的构造函数是explicit，阻止了一般指针隐式转换为 auto_ptr的构造，所以不能直接将一般类型的指针赋值给auto_ptr类型的对象，必须用auto_ptr的构造函数创建对象；<br>由于auto_ptr对象析构时会删除它所拥有的指针，所以使用时避免多个auto_ptr对象管理同一个指针；<br>​		Auto_ptr内部实现，析构函数中删除对象用的是delete而不是delete[]，所以auto_ptr不能管理数组；<br>​		auto_ptr支持所拥有的指针类型之间的隐式类型转换。<br>​		可以通过		<em>和-&gt;运算符对auto_ptr所有用的指针进行提领操作；<br>T</em> get(),获得auto_ptr所拥有的指针；T* release()，释放auto_ptr的所有权，并将所有用的指针返回。</p>
+<h2 id="9、手写实现智能指针类需要实现哪些函数？"><a href="#9、手写实现智能指针类需要实现哪些函数？" class="headerlink" title="9、手写实现智能指针类需要实现哪些函数？"></a>9、手写实现智能指针类需要实现哪些函数？</h2><ol>
+<li>​		智能指针是一个数据类型，一般用模板实现，模拟指针行为的同时还提供自动垃圾回收机制。它会自动记录SmartPointer&lt;T*&gt;对象的引用计数，一旦T类型对象的引用计数为0，就释放该对象。除了指针对象外，我们还需要一个引用计数的指针设定对象的值，并将引用计数计为1，需要一个构造函数。新增对象还需要一个构造函数，析构函数负责引用计数减少和释放内存。</li>
+</ol>
+<p>​		通过覆写赋值运算符，才能将一个旧的智能指针赋值给另一个指针，同时旧的引用计数减1，新的引用计数加1</p>
+<ol>
+<li>一个构造函数、拷贝构造函数、复制构造函数、析构函数、移动函数；</li>
+</ol>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/04/03/STL/">STL</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/C-11/" rel="tag">C++11</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/">C++11新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/03/STL/">STL</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/">恒生C++实习生笔试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/%E9%A2%98%E8%A7%A3-%E8%AE%A1%E7%AE%97%E6%9F%90%E5%AD%97%E6%AF%8D%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0/">题解 | 计算某字母出现次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/c-getline-%E5%87%BD%E6%95%B0/">c++ getline() 函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/29/C-%E4%B8%AD%E7%9A%84size-%E3%80%81sizeof-%E3%80%81strlen-%E3%80%81str-length/">C++中的size()、sizeof() 、strlen()、str.length()</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
