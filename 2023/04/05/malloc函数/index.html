@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>malloc函数 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="malloc函数"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>malloc函数</h2>
+            <div class="post-meta">
+                <time class="date">2023.04.05</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p><strong>malloc是动态内存分配函数，用于申请一块连续的指定大小的内存块区域以void*类型返回分配的内存区域地址</strong></p>
+<h3 id="malloc函数原型"><a href="#malloc函数原型" class="headerlink" title="malloc函数原型"></a>malloc函数原型</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> num_bytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+意为分配长度为num_bytes字节的内存块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="malloc函数头文件"><a href="#malloc函数头文件" class="headerlink" title="malloc函数头文件"></a>malloc函数头文件</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;malloc.h></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="malloc函数返回值"><a href="#malloc函数返回值" class="headerlink" title="malloc函数返回值"></a>malloc函数返回值</h3><p>如果分配成功则返回指向被分配内存的指针，否则返回空指针NULL。</p>
+<h3 id="malloc函数使用注意事项"><a href="#malloc函数使用注意事项" class="headerlink" title="malloc函数使用注意事项"></a>malloc函数使用注意事项</h3><p>malloc函数的返回的是<strong>无类型指针，在使用时一定要强制转换为所需要的类型。</strong><br><strong>（敲黑板）重点：在使用malloc开辟空间时，使用完成一定要释放空间，如果不释放会造内存泄漏。</strong><br><strong>在使用malloc函数开辟的空间中，不要进行指针的移动，因为一旦移动之后可能出现申请的空间和释放空间大小的不匹配</strong></p>
+<h3 id="malloc函数使用形式"><a href="#malloc函数使用形式" class="headerlink" title="malloc函数使用形式"></a><strong>malloc函数使用形式</strong></h3><p><strong>关于malloc所开辟空间类型：malloc只开辟空间，不进行类型检查，只是在使用的时候进行类型的强转。</strong><br>举个例子：‘我’开辟你所需要大小的字节大小空间，至于怎么使用是你的事<br>malloc函数返回的实际是一个无类型指针，必须在其前面加上指针类型强制转换才可以使用<br>指针自身 &#x3D; (指针类型<em>）malloc（sizeof（指针类型）</em>数据数量）</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>在使用malloc函数之前我们一定要计算字节数，malloc开辟的是用户所需求的字节数大小的空间。<br>如果多次申请空间那么系统是如何做到空间的不重复使用呢？<br>在使用malloc开辟一段空间之后，系统会在这段空间之前做一个标记（0或1），当malloc函数开辟空间如果遇到标记为0就在此开辟，如果为1说明此空间正在被使用。</p>
+<h3 id="free函数"><a href="#free函数" class="headerlink" title="free函数"></a>free函数</h3><p>作用：释放malloc(或calloc、realloc)函数给指针变量分配的内存空间。<br>注意：使用后该指针变量一定要重新指向NULL，防止悬空指针（失效指针）出现，有效规避错误操作。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token operator">*</span>p <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+	<span class="token function">free</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	p <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<p><strong>free函数在释放空间之后，把内存前的标志变为0，且为了防止数据泄露，它会把所释放的空间用cd进行填充。</strong></p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/04/04/C-%E9%9D%A2%E8%AF%95%E9%A2%98/">C++面试题（持续更新）</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/malloc%E5%87%BD%E6%95%B0/" rel="tag">malloc函数</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/04/05/malloc%E5%87%BD%E6%95%B0/">malloc函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/C-%E9%9D%A2%E8%AF%95%E9%A2%98/">C++面试题（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/Lambda%E5%87%BD%E6%95%B0/">Lambda函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/">C++11新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/03/STL/">STL</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/01/%E6%81%92%E7%94%9FC-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/">恒生C++实习生笔试</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">C++ 面试</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/malloc%E5%87%BD%E6%95%B0/" style="font-size: 10px;">malloc函数</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" style="font-size: 10px;">匿名函数  Lambda函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
