@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>亚信科技C++笔试 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="亚信科技C++笔试"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>亚信科技C++笔试</h2>
+            <div class="post-meta">
+                <time class="date">2023.04.10</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <p>1.bash shell脚本的第一行是 ？</p>
+<p>A #&#x2F;bin&#x2F;bash </p>
+<p>B !&#x2F;bin&#x2F;bash </p>
+<p>C &#x2F;bin&#x2F;bash </p>
+<p>D #!&#x2F;bin&#x2F;bash</p>
+<p>解析：选D，脚本的第一行一般为 #!&#x2F;bin&#x2F;bash ，表示正在使用的是bash shell，它告诉操作系统使用bash解释器来运行该脚本。第一行写这个的好处是：终端能够知道这个是脚本文件，因此能够在编辑时能够以不同的颜色突出各种关键词及变量，这样能够及时的排查语法错误。实际测试发现，第一行不写这一行也可以，但是终端就不知道这个是脚本了，因此显示来看所有的代码颜色都是一样的。但实际更改执行权限后，二者运行起来没有区别。</p>
+<p>2.(京东)</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">classA  <span class="token operator">*</span>pclassa <span class="token operator">=</span> <span class="token keyword">new</span> classA<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">delete</span> pclassa<span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>C++语言中，类ClassA的构造函数和析构函数的执行次数分别为？</p>
+<p>解析：在C++中，当使用 new 运算符创建类的对象时，会自动调用类的构造函数来初始化对象。同样，当使用 delete 运算符销毁类的对象时，会自动调用类的析构函数来释放对象占用的内存。</p>
+<p>Class A *pclassa&#x3D;newClassA[5];  new了五个对象，所以构造5次，然后pclass指向这五个对象  </p>
+<p>​    delete pclassa;  析构一次，delete[] pclassa  这样就析构5次</p>
+<p><strong>这边考察delete和delete[] 的区别。delete和delete[]都能释放指针所指向的内存区域。但delete只会调用一次析构函数，而delete[]还会调用后续所有对象的析构函数。当数据类型为基本数据类型时，用delete和delete[]都可以，因为基本数据类型没有析构函数。</strong></p>
+<p>补充：</p>
+<ol>
+<li>构造函数的函数名和类名相同 </li>
+<li>构造函数没有返回值 </li>
+<li>构造函数和普通函数一样带有一个(可能为空)的参数列表和一个(可能为空)的函数体 </li>
+<li>可以有多个构造函数，构造函数间必须参数个数不同或者参数类型不同</li>
+</ol>
+<p>3.在Python中关于列表的运算结果为:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">lists <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 统计列表中元素3的出现次数</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>lists<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 输出：3</span>
+
+<span class="token comment"># 删除列表中最后一个元素并返回该元素</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>lists<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token comment"># 输出：3</span>
+
+<span class="token comment"># 再次删除列表中最后一个元素并返回该元素</span>
+lists<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>lists<span class="token punctuation">)</span>           <span class="token comment"># 输出：[1, 2, 2, 3]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>解析：lists.count() 统计列表中元素出现的次数</p>
+<p>lists.pop()  删除列表中最后一个元素并返回该元素</p>
+<p>4.在 Linux 中，vi 编辑器怎样将字符串“AAA”全部替换成yyy”？ </p>
+<p>A s&#x2F;AAA&#x2F;yyy&#x2F;g </p>
+<p>B i&#x2F;AAA&#x2F;yyy&#x2F; </p>
+<p>C p&#x2F;AAA&#x2F;yyy&#x2F;h </p>
+<p>D p&#x2F;AAA&#x2F;yyy&#x2F;</p>
+<p>解析：在Linux中，使用vi编辑器将字符串“AAA”全部替换成“yyy”的命令应该是： <code>:%s/AAA/yyy/g</code>。</p>
+<p>这个命令中，<code>%</code> 表示全文范围，<code>s</code> 表示替换，<code>/AAA/</code> 表示被替换的字符串，<code>/yyy/</code> 表示替换成的字符串，<code>g</code> 表示全局匹配。因此，该命令的意思是，在全文范围内查找字符串“AAA”，并将其全部替换成“yyy”。</p>
+<p>&#x2F;pattern: 从光标开始处向文件尾搜索pattern </p>
+<p>?pattern: 从光标开始处向文件首搜索pattern </p>
+<p>n: 在<a href="https://hd.nowcoder.com/link.html?target=https://www.baidu.com/s?wd=%E5%90%8C%E4%B8%80%E6%96%B9%E5%90%91&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1d9uWmsPhP9PhDdn1nzm1Ph0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3ErHDLPWnzrHmvn10zrHDYP1T4">同一方向</a>重复上一次搜索命令 </p>
+<p>N: 在反方向上重复上一次搜索命令</p>
+<p> :s&#x2F;p1&#x2F;p2&#x2F;g: 将当前行中所有p1均用p2替代 </p>
+<p>:n1,n2s&#x2F;p1&#x2F;p2&#x2F;g: 将第n1至n2行中所有p1均用p2替代 </p>
+<p>:%s&#x2F;AAA&#x2F;yyy&#x2F;g: 将文件中所有p1均用p2替换</p>
+<p>5.下列关于视图与基本表的对比正确的是 ?</p>
+<p>A 视图的操作功能强于基本表</p>
+<p>B 视图的数据控制功能弱于基本表</p>
+<p>C 上面提到的三种功能二者均相当</p>
+<p>D 视图的定义功能强于基本表</p>
+<p>解析：</p>
+<p><strong>视图定义能力强于表，因为可以在多张表上定义视图，操作能力弱于表，控制能力相当</strong></p>
+<p>补充:视图与基表的区别与联系<br>1、<strong>视图是从一个或者多个基本表中导出的表</strong>，给用户使用的‘专用表’，是已经编译好的sql语句，而表不是；</p>
+<p>2、 视图没有实际的物理记录，不占用物理空间，而表相反。</p>
+<p>3、<strong>视图是查看表内容的窗口</strong>，是查看数据表的一种方法，视图可以不给用户接触表，使得用户不知道表结构，具有更大的安全性；</p>
+<p>4、视图只是逻辑概念的存在，只能由创建的语句来修改。而表可以随时对它进行修改。</p>
+<p>5、<strong>视图的建立和删除只影响视图本身，不影响对应的基本表</strong>。</p>
+<p>联系：视图（View）是在基本表之上建立的表，它的结构(即所对应的列)和内容(即所有数据行)都来自基本表。一个视图可以对应一个或多个基本表。视图是基本表的抽象和在逻辑意义上建立的新关系。</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/21550f5d26bb1404d14433e760504ac.png" alt="21550f5d26bb1404d14433e760504ac" style="zoom:150%;">
+
+<p>解析：</p>
+<p>输出结果为：</p>
+<p><strong>begin:  123</strong><br><strong>process: 123 123</strong><br><strong>process: 456 123</strong><br><strong>end: 123</strong></p>
+<p>该脚本使用awk命令来对两个文件temp1和temp2进行处理。其中，**<code>BEGIN</code>和<code>END</code>是awk中的特殊模式，用来表示在处理前和处理后分别执行的命令**。<code>&#123;&#125;</code> 中的语句表示对每一行的处理，<code>$0</code> 表示当前行的全部内容。</p>
+<ul>
+<li>在 <code>BEGIN</code> 块中，使用 <code>print</code> 函数打印一条消息，其中包括当前行的内容 <code>$0</code> 和定义的变量 <code>v</code>，它的值将会是 <code>123</code>。由于在 <code>BEGIN</code> 块中没有对 <code>$0</code> 进行赋值，因此它的值是空字符串。</li>
+<li>对于输入文件中的每一行，在输出中使用 <code>print</code> 函数打印一条消息，其中包括当前行的内容 <code>$0</code> 和定义的变量 <code>v</code>，它的值将会是 <code>123</code>。</li>
+<li>在 <code>END</code> 块中，使用 <code>print</code> 函数打印一条消息，其中包括定义的变量 <code>v</code>，它的值将会是 <code>123</code>。</li>
+</ul>
+<p>​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </p>
+<p>7.执行以下程序，结果输出为 ?</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a<span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+b<span class="token operator">=</span><span class="token number">2</span>
+C<span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">def</span> <span class="token function">fn</span><span class="token punctuation">(</span>lis <span class="token punctuation">,</span>obj<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    lis<span class="token punctuation">.</span>append<span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+    obj <span class="token operator">=</span> obj <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> lis<span class="token punctuation">,</span>obj
+fn<span class="token punctuation">(</span>a<span class="token punctuation">,</span>c<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>fn<span class="token punctuation">(</span>a<span class="token punctuation">,</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>解析：</p>
+<p>输出为：([1, 2], 2)</p>
+<p>在这个修正后的代码中，<code>fn()</code> 函数接受一个列表和一个整数作为参数，并返回一个包含两个元素的元组，其中第一个元素是修改后的列表，第二个元素是修改后的整数。函数中的修改操作只会影响到局部变量，不会修改原始列表或整数。在函数调用时，将 <code>a</code> 和 <code>c</code> 传入，并将返回的结果存储在 <code>result</code> 变量中。最后，打印 <code>result</code> 的值。在这个例子中，<code>result</code> 的值应该为 <code>([1, 2], 2)</code>，表示修改后的列表和整数值。</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/026f90f7f31f1ae78c47c69d8d35735.png" alt="026f90f7f31f1ae78c47c69d8d35735" style="zoom:150%;">
+
+<p>解析：C</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> SNAME 
+<span class="token keyword">FROM</span> S<span class="token punctuation">,</span> C<span class="token punctuation">,</span> SC 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>S<span class="token comment"># = SC.S# AND C.C# = SC.C# AND SEX = "女" AND CNAME = "计算机"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>C  SQL 语句使用了连接操作符<code>JOIN</code>来连接三张表，连接条件为学生号<code>S#</code>相等且课程号<code>C#</code>相等。然后通过<code>WHERE</code>子句进行筛选，找到性别为女且选修课程为“计算机”的学生姓名<code>SNAME</code>。</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/2542c11ced8dfd199e3bee6c51fdf2f.png" alt="2542c11ced8dfd199e3bee6c51fdf2f" style="zoom:150%;">
+
+<p>解析：</p>
+<p>该函数可以实现将链表的元素重新排列，使得链表的第一个元素和最后一个元素依次相连，第二个元素和倒数第二个元素依次相连，以此类推，直到链表中所有的元素都被重新排列。根据函数的实现，如果给定的链表为 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7，经过函数执行后，链表的内容将变为 2-&gt;1-&gt;4-&gt;3-&gt;6-&gt;5-&gt;7。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">struct</span> <span class="token class-name">node</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> value<span class="token punctuation">;</span>          <span class="token comment">// 节点的值</span>
+    <span class="token keyword">struct</span> <span class="token class-name">node</span> <span class="token operator">*</span>next<span class="token punctuation">;</span>  <span class="token comment">// 下一个节点的指针</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">rearrange</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">node</span> <span class="token operator">*</span>list<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">node</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> <span class="token operator">*</span>q<span class="token punctuation">;</span> <span class="token comment">// 定义指向节点的指针 p 和 q</span>
+    <span class="token keyword">int</span> temp<span class="token punctuation">;</span>           <span class="token comment">// 定义临时变量 temp</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">!</span>list<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span>list <span class="token operator">-></span> next<span class="token punctuation">)</span>  <span class="token comment">// 如果链表为空或只有一个节点，则直接返回</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    p <span class="token operator">=</span> list<span class="token punctuation">;</span>   <span class="token comment">// p 指向链表头节点</span>
+    q <span class="token operator">=</span> list <span class="token operator">-></span> next<span class="token punctuation">;</span>   <span class="token comment">// q 指向链表的第二个节点</span>
+
+    <span class="token keyword">while</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span>    <span class="token comment">// 只要 q 不是空指针，就继续循环</span>
+    <span class="token punctuation">&#123;</span>
+        temp <span class="token operator">=</span> p <span class="token operator">-></span> value<span class="token punctuation">;</span>  <span class="token comment">// 保存 p 指向的节点的值</span>
+        p <span class="token operator">-></span> value <span class="token operator">=</span> q <span class="token operator">-></span> value<span class="token punctuation">;</span>    <span class="token comment">// 将 p 指向的节点的值更新为 q 指向的节点的值</span>
+        q <span class="token operator">-></span> value <span class="token operator">=</span> temp<span class="token punctuation">;</span>  <span class="token comment">// 将 q 指向的节点的值更新为临时变量 temp 中保存的值</span>
+
+        p <span class="token operator">=</span> q <span class="token operator">-></span> next<span class="token punctuation">;</span>  <span class="token comment">// 将 p 指向下下个节点</span>
+        q <span class="token operator">=</span> p <span class="token operator">?</span> p <span class="token operator">-></span> next <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// 将 q 指向 p 的下一个节点（如果 p 不是空指针），或者为空指针（如果 p 是空指针，表示已经到达链表尾部）将q赋为0，循环结束</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/b81910ec4234c267d0e469d9fd98172.png" alt="b81910ec4234c267d0e469d9fd98172" style="zoom:150%;">
+
+<p>解析：错误的是 A</p>
+<p>三条闰年的计算规则：</p>
+<p>1、非整百年：能被4整除而不能被100整除的为闰年。（如2016年就是闰年,2100年不是闰年）</p>
+<p>2、整百年：能被400整除而不能被3200整除的是闰年。(如2000年是闰年，3200年不是闰年)</p>
+<p>3、对于数值很大的年份：这年如果能整除3200，并且又能整除172800则是闰年。如172800年是闰年，86400年不是闰年。</p>
+<p>11.Linux 中，有如下 Shell 语句: </p>
+<p>if [ $2 -a $2 &#x3D; “test” ] </p>
+<p>则其中 -a 是什么意思 ？</p>
+<p>解析：and 即为并且的意思</p>
+<p>在 Linux 的 Shell 脚本中，-a 是一个逻辑运算符，表示“and”，用于检查两个条件是否同时为真。在给定的语句中，条件是 $2 -a $2 &#x3D; “test”，它表示如果变量 $2 存在且等于 “test”，则执行下面的代码块。</p>
+<p>12.阅读下面 C++ 代码，输出结果为 ？（网易）</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token expression">ciostream<span class="token operator">></span></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">basel</span> 
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+ 	<span class="token keyword">int</span> a<span class="token punctuation">,</span> b<span class="token punctuation">;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token function">base1</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">b</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">a</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>    <span class="token comment">// 构造函数初始化对象   按照声明的顺序初始化函数</span>
+	<span class="token function">base1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>， <span class="token function">a</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">int</span> <span class="token function">get_a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token keyword">return</span> a<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">int</span> <span class="token function">get_b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token keyword">return</span> b<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    base1 <span class="token function">obj1</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> obj1<span class="token punctuation">.</span><span class="token function">get_a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl <span class="token operator">&lt;&lt;</span> obj<span class="token punctuation">.</span><span class="token function">get_b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>解析：</p>
+<p>12 12</p>
+<p>这是因为在 main 函数中创建了一个 base1 类的对象 obj1，并且在创建时传入了一个参数 11，导致在调用构造函数时，成员变量 b 的值为 12（传入的 11 加上 1），而成员变量 a 的值在构造函数中被初始化为 b 的值，即 12。因此，调用 obj1.get a() 函数返回值为 12，调用 obj1.get b() 函数返回值也为 12。最终输出结果为 12 和 12。</p>
+<p>c++初始化类成员时，是按照声明的顺序初始化，而不是按照出现在初始化列表中的顺序</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/c6c3ae9d6c481572dea7b3f1f5a72a0.png" alt="c6c3ae9d6c481572dea7b3f1f5a72a0" style="zoom:150%;">
+
+
+
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/8c2d4523496daa7704f75d4f749029c.png" alt="8c2d4523496daa7704f75d4f749029c" style="zoom:150%;">
+
+<p>解析：B</p>
+<p>执行 <code>select count(name) from student table</code> 语句时，会统计名字不为 null 的记录数并返回，因此排除掉了 <code>id</code> 为 1002 和 1003 的记录，因为它们的 <code>name</code> 值为 null。因此结果应该是 3。</p>
+<p>15.32位操作系统char *a&#x3D;”12”，sizeof(a)是多少？（阿里巴巴）</p>
+<p>解析：</p>
+<p>首先char* a，是一个字符型指针！a指向了字符串“123”的地址，所以这儿的a是指int型的字符串“123”地址！ 因此sizeof（a）返回的指针的长度，32位指针就是4了，若是64位，那就是8了</p>
+<p>16.以下几条路由，10.1.1930&#x2F;24，10.1.194,0&#x2F;24，10.1.196.0&#x2F;24 ，10.1.198.0&#x2F;24，如果进行路由汇聚，则能预盖这几条路由地的是？ </p>
+<p>A 18.1.280.0&#x2F;22 </p>
+<p>B 10.1.192.0&#x2F;21 </p>
+<p>C 18.1.224.0&#x2F;20 </p>
+<p>D 10.1.192.0&#x2F;22</p>
+<p>解析：</p>
+<p>路由汇聚是把相同的路由ip地址共同聚集成为一个总的ip地址，</p>
+<p>10.1.  193.0&#x3D;&gt;<strong>1100 0</strong>001</p>
+<p>  10.1.  194.  0&#x3D;&gt;      <strong>1100 0</strong>010</p>
+<p>  10.1.  196.  0&#x3D;&gt;      <strong>1100 0</strong>100</p>
+<p>  10.1.  198.  0&#x3D;&gt;      <strong>1100 0</strong>110</p>
+<p>四个IP相与，1的个数有21个，所以选择网络号有21的就能覆盖  </p>
+<p>可以得出有五位是相同的，得出网络号应该占用8+8+5&#x3D;21位，即</p>
+<p>  10.1.  <strong>1100 0000</strong>  .  0</p>
+<p>  &#x3D;&#x3D;》  10.1.192.0&#x2F;21</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/b0c37bb5c88d5b17b67f38dee2ccb93.png" alt="b0c37bb5c88d5b17b67f38dee2ccb93" style="zoom:150%;">
+
+<p>解析：B</p>
+<p>执行系统调用的过程是这样的：</p>
+<p>正在运行的进程先传递系统调用参数，然后由陷入（trap）指令负责将用户态转化为内核态，并将返回地址压入堆栈以备后用，接下来CPU执行相应的内核态服务程序，最后返回用户态。</p>
+<p>18.对静态成员的不正确描述是 ？</p>
+<p>A 静态数据成员要在类外定义和初始化 </p>
+<p>B 调用静态成员函数时要通过类或对象激活，所以静态成员函数拥有this指针 </p>
+<p>C 非静态成员函数也可以操作静态数据成员 </p>
+<p>D 静态成员不属于对象，是类的共享成员</p>
+<p>解析：选B</p>
+<p>正确的描述是： </p>
+<p><strong>静态数据成员要在类内声明，在类外定义和初始化。</strong> </p>
+<p><strong>调用静态成员函数时可以通过类或对象激活，但是静态成员函数没有this指针，因为它不属于任何一个对象。</strong> </p>
+<p><strong>非静态成员函数也可以操作静态数据成员。</strong> </p>
+<p><strong>静态成员不属于对象，是类的共享成员。</strong></p>
+<p>19.避免死锁的一个著名的算法是 ?</p>
+<p>A 银行家算法 </p>
+<p>B 优秀级算法 </p>
+<p>C 资源按序分配法 </p>
+<p>D 先入先出法</p>
+<p>解析：A</p>
+<p>死锁是指<strong>两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去</strong>。这些永远在互相等待的进程称为死锁进程。</p>
+<p>死锁预防： </p>
+<p>  死锁预防发生在程序运行之前 </p>
+<p>  1、破坏互斥条件 </p>
+<p>  由于互斥条件是资源固有的特性，因此破坏该条件没有意义 </p>
+<p>  2、破坏占有等待条件 </p>
+<p>  每个进程开始执行时就请求全部所需要的资源；动态分配时，该进程不占用系统资源 </p>
+<p>  3、破坏不可抢占条件 </p>
+<p>  当该进程申请新的资源未得到满足时，释放其已经占有的资源 </p>
+<p>  4、破坏环路等待条件 </p>
+<p>  给每个资源编号，进程只能按照编号访问资源 </p>
+<p>  死锁避免（程序运行时）： </p>
+<p>  安全状态 </p>
+<p>  单资源银行家算法 </p>
+<p>  多资源银行家算法</p>
+<p>思想:</p>
+<p>银行家算法的基本思想是分配资源之前，判断系统是否是安全的；若是，才分配。</p>
+<p>1、分批向银行贷款时，申请的总额不能超过一开始申请的额度； </p>
+<p>  2、申请贷款时不能超过银行现有资金数目； </p>
+<p>  3、当银行资金不能满足顾客贷款需求时，可以推迟支付，但是肯定会让顾客在需求时间内得到贷款； </p>
+<p>  4、顾客拿到贷款后必须在规定时间内归还。</p>
+<p>20.如果事务T获得了数据项Q上的排它锁，则T对Q </p>
+<p>A 只能写不能读 </p>
+<p>B 既可读又可写 </p>
+<p>C 不能读不能写 </p>
+<p>D 只能读不能写</p>
+<p>解析：B  （读共享，写排他）能写一定能读，反之则不行</p>
+<p><strong>共享锁【S锁】</strong><br> <strong>又称读锁，若事务T对数据对象A加上S锁，则事务T可以读A但不能修改A，其他事务只能再对A加S锁，而不能加X锁，直到T释放A上的S锁。这保证了其他事务可以读A，但在T释放A上的S锁之前不能对A做任何修改。</strong> </p>
+<p>  <strong>排他锁【X锁】</strong><br> <strong>又称写锁。若事务T对数据对象A加上X锁，事务T可以读A也可以修改A，其他事务不能再对A加任何锁，直到T释放A上的锁。这保证了其他事务在T释放A上的锁之前不能再读取和修改A。</strong></p>
+<p>21.在 Linux 系统中，v编辑器的末行模式中，若需要将文件中每一行的第一个“Linux”替换为“RHEL5”，可以使用() </p>
+<p>A :s&#x2F;LinuX&#x2F;RHEL5&#x2F;g </p>
+<p>B :%s&#x2F;LinUX&#x2F;RHEL5 </p>
+<p>C :%s&#x2F;LinUX&#x2F;RHEL5&#x2F;g</p>
+<p>D :s&#x2F;LinuX&#x2F;RHEL5</p>
+<p>解析：B</p>
+<ul>
+<li>% 表示匹配所有行。</li>
+<li>s 表示进行替换操作。</li>
+<li>&#x2F;LinUX&#x2F; 表示匹配要被替换的字符串。</li>
+<li>&#x2F;RHEL5&#x2F; 表示替换成的字符串。</li>
+<li>g 表示进行全局替换，不加 g 只替换每行的第一个匹配项。</li>
+</ul>
+<p>22.已知最大堆的关键字序列为93,72,48,53,45,30,18,36,15,35，删除关键字72，调整后得。到的最大堆是() </p>
+<p>A 93,48,53,36,45, 38,18,35,15 </p>
+<p>B 93,53,48 45,30, 36,18, 35,15 </p>
+<p>C 93,53,48,45,30,36,35,18,15 </p>
+<p>D 93,53,48,36,45,30,18,35,15</p>
+<p>解析：D</p>
+<p>最大堆和最小堆是二叉堆的两种形式。</p>
+<p>最大堆：根结点的键值是所有堆结点键值中最大者，且每个结点的值都比其孩子的值大。</p>
+<p>最小堆：根结点的键值是所有堆结点键值中最小者，且每个结点的值都比其孩子的值小。</p>
+<p><img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/aaa.png"></p>
+<p>1&gt;将要删除的节点与最后一个节点进行交换</p>
+<p>2&gt;调整堆成为大顶堆或小顶堆</p>
+<p>23.172.16.100.5&#x2F;255.255.255.252 的网络地和主机号是多少 ?</p>
+<p> A 172.16.100.4 5 </p>
+<p>B 172.16.100.5 1 </p>
+<p>C172.16.109.5 5</p>
+<p>D 172.16.100.4 1</p>
+<p>解析:</p>
+<p>将子网掩码与IP地址逻辑与（AND）运算后得出的结果即为<strong>网络部分</strong></p>
+<p>将子网掩码取反再与IP地址逻辑与（AND）后得到的结果即为<strong>主机部分</strong></p>
+<p>给定IP地址172.16.100.5和子网掩码255.255.255.252，将子网掩码转换成二进制：11111111.11111111.11111111.11111100。</p>
+<p>将IP地址和子网掩码进行AND运算，得到网络地址为172.16.100.4。这个子网有4个IP地址，分别是172.16.100.4（网络地址）、172.16.100.5（主机号）、172.16.100.6（主机号）和172.16.100.7（广播地址）。</p>
+<p>因此，172.16.100.5&#x2F;255.255.255.252的网络号是172.16.100.4，主机号是1。</p>
+<p>24.oracle 数据库中最常见的索引类型是 </p>
+<p>A 反向键值索引 </p>
+<p>B 位图索引 </p>
+<p>C b-tree索引 </p>
+<p>D 文本素引</p>
+<p>解析：C</p>
+<ol>
+<li><strong>b-tree索引    Oracle数据库中最常见的索引类型是b-tree索引，也就是B-树索引，以其同名的计算科学结构命名。CREATE  INDEX语句时，默认就是在创建b-tree索引。没有特别规定可用于任何情况。</strong> </li>
+<li><strong>位图索引(bitmap index)    位图索引特定于该列只有几个枚举值的情况，比如性别字段，标示字段比如只有0和1的情况。</strong> </li>
+<li><strong>基于函数的索引    比如经常对某个字段做查询的时候是带函数操作的，那么此时建一个函数索引就有价值了。</strong> </li>
+<li><strong>分区索引和全局索引    这2个是用于分区表的时候。前者是分区内索引，后者是全表索引</strong> </li>
+<li><strong>反向索引（REVERSE）    这个索引不常见，但是特定情况特别有效，比如一个varchar(5)位字段(员工编号)含值（10001,10002,10033,10005,10016..）。这种情况默认索引分布过于密集，不能利用好服务器的并行，但是反向之后10001,20001,33001,50001,61001就有了一个很好的分布，能高效的利用好并行运算。</strong> </li>
+<li><strong>HASH索引    HASH索引可能是访问数据库中数据的最快方法，但它也有自身的缺点。集群键上不同值的数目必须在创建HASH集群之前就要知道。需要在创建HASH集群的时候指定这个值。使用HASH索引必须要使用HASH集群。</strong></li>
+</ol>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/94ad9d259fc1dd887028b3e2f23fb90.png" alt="94ad9d259fc1dd887028b3e2f23fb90" style="zoom:150%;">
+
+<p>解析：A</p>
+<p>输出结果为：0。因为该命令判断字符串是否为空，-z 表示字符串为空时为 true，” “ 为空字符串，所以表达式 [-z “”] 为 true，执行 &amp;&amp; 后面的命令 echo 0。因此输出为 0。</p>
+<p>这是一个 Bash Shell 命令，主要用于字符串的判断。其中：</p>
+<ul>
+<li><code>[ -z &quot;&quot; ]</code> 表示判断空字符串，<code>-z</code> 表示判断字符串长度是否为0，<code>&quot;&quot;</code>是需要进行判断的字符串，这里是空字符串，所以条件成立，返回真值 1。</li>
+<li><code>&amp;&amp;</code> 表示逻辑与，当前面的命令返回真值（即命令成功执行）时，才会执行后面的命令。</li>
+<li><code>echo 0</code> 表示输出数字 0。</li>
+<li><code>|| echo 1</code> 表示输出1。</li>
+</ul>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/45861626284c7f8388ace68444bbc34.png" alt="45861626284c7f8388ace68444bbc34" style="zoom:150%;">
+
+<p>解析：B</p>
+<p>双端队列的题可以用以下技巧：</p>
+<p>入队顺序为a b c d e，则出队顺序必然包含在序列e d c b a b c d e中，找出选项中不符合条件的序列即可。</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/ddd37da0070526a8a1699577b3dd737.png" alt="ddd37da0070526a8a1699577b3dd737" style="zoom:150%;">
+
+<p>解析：C</p>
+<p><strong>两个变量是相同类型才可以相互赋值（强制转换除外!）</strong> </p>
+<p>考察的是对<strong>指针类型</strong>的理解以及<strong>数组和指针</strong>的关系。 </p>
+<p>  根据题目中的指针类型p和数组a类型相同，假设都用int类型代指。 </p>
+<ul>
+<li><strong>D选项</strong>：数组名相当于数组首元素的地址，<strong>类型int*。</strong>p指针变量类型也为<strong>int*，</strong>所以可以赋值，<strong>A正确</strong>。    </li>
+<li><strong>A选项</strong>：数组索引为0的元素a[0]类型为<strong>int类型</strong>，*p为指针变量存放地址中的值同为<strong>int类型</strong>，可以赋值，<strong>B正确</strong>。    </li>
+<li><strong>B选项</strong>：&amp;a[0]首元素取地址，类型为int<em>，已知p为指针变量类型int</em>，类似于D选项的原理，<strong>C正确</strong>。    </li>
+<li><strong>C选项</strong>：对数组名取地址，&amp;a是指向整个数组的指针int * [n]，而p仍然为int *类型，类型不匹配，<strong>D错误</strong>。</li>
+</ul>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/c07f8f660457c4f1e8324e2d5426b37.png" alt="c07f8f660457c4f1e8324e2d5426b37" style="zoom:150%;">
+
+<p>解析：D</p>
+<p>一个由c&#x2F;C++编译的程序占用的内存分为以下几个部分 </p>
+<p>1、栈区（stack）— 程序运行时由编译器自动分配，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。程序结束时由编译器自动释放。 </p>
+<p>2、堆区（heap） — 在内存开辟另一块存储区域。一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事。用malloc, calloc, realloc等分配内存的函数分配得到的就是在堆上 </p>
+<p>3、全局区（静态区）（static）—编译器编译时即分配内存。全局变量和静态变量的存储是放在一块的。对于C语言初始化的全局变量和静态变量在一块区域.data， 未初始化的全局变量和未初始化的静态变量在相邻的另一块区域.bss。而C++则没有这个区别 - 程序结束后由系统释放 </p>
+<p>4、文字常量区 —常量字符串就是放在这里的。 程序结束后由系统释放 </p>
+<p>5、程序代码区—存放函数体的二进制代码。</p>
+<p> a是全局变量，放在全局区 </p>
+<p>  *str是常量字符串放在文字常量区，str指针放在全局区 </p>
+<p>  <em>b和</em>obj对象都是new出来的，放在堆区,指针b和obj放在栈区 </p>
+<p>  c,obj2,aa是局部变量，lhs和rhs是函数参数值，都放在栈区</p>
+<p>29.与用于将虚拟地址转换为物理地址的单级页表相比，多级页表更好是因为 ？ </p>
+<p>A 它有助于减少实现进程的虚拟地址空间所需的页表大小</p>
+<p>B 它是翻译后备缓冲区所必需的 </p>
+<p>C 它有助于减少页面替换算法中的页面错误数量。 </p>
+<p>D 它减少了读取或写入内存的访问时间。</p>
+<p>解析：A</p>
+<p>因为二级页表可以不存在且二级页表可以不在主存，所以可以节省内存，故A正确</p>
+<p>多级页表在虚拟地址空间打满4G时，不会减少页表大小，反而会增加一个页目录（4K）空间，它的优点在于：</p>
+<p>01 不需要连续的4M页表空间，也就是它的页表可以是离散的页构成的  </p>
+<p>02  如果虚拟地址没有打满4G 则可以只给使用的虚拟地址分配页表，从而可以减少页表所需空间，比如4M虚拟地址，只需要一个页目录+一个页表即可，共占8k空间，另外多级页表的不足在于内存训址时 要多一次内存访问（先访问页目录，然后访问页表拿到物理页地址，然后访问内存）</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/6055accf512dc7d523fe37b8d46dae4.png" alt="6055accf512dc7d523fe37b8d46dae4" style="zoom:150%;">
+
+<p>解析：C</p>
+<p><strong>一个类可以声明多个纯虚函数，对于包含有纯虚函数的类被称为抽象类。</strong> </p>
+<p>  一个抽象类只能作为基类来派生新类，不能声明抽象类的对象。因为抽象类中有一个或多个函数没有定义。也不能用作参数类型、函数返回值类型或显示类型转换，但可以声明指向类对象的指针（和引用），以支持运行时的多态性。 </p>
+<p>  A fun(int); &#x2F;&#x2F;错误，与抽象类声明无关 </p>
+<p>  A*p;&#x2F;&#x2F;正确 </p>
+<p>  int fun(A); &#x2F;&#x2F;错误，抽象类不能用作参数类型 </p>
+<p>  A obj; &#x2F;&#x2F;错误，不能声明抽象类的对象</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/3323bd9a404a9b08390b2956678ec5a.png" alt="3323bd9a404a9b08390b2956678ec5a" style="zoom:150%;">
+
+<p>解析：D</p>
+<p>32.在 Linux 中，如何查看物理内存的大小 ?</p>
+<p>A cat &#x2F;proc&#x2F;meminfo </p>
+<p>B mem </p>
+<p>C ps -ef </p>
+<p>D cat &#x2F;dev&#x2F;mem</p>
+<p>解析：</p>
+<p>方式一：<strong>free</strong> </p>
+<p>  直观的展示linux系统内存使用及交换区的容量大小等 </p>
+<p>   方式二：<strong>top</strong>  </p>
+<p>   动态实时查看系统中每一个进程的资源使用情况  </p>
+<p>   方式三：<strong>cat &#x2F;proc&#x2F;meminfo</strong>  </p>
+<p>​	查看物理内存大小</p>
+<p>   方式四：<strong>gnome-system-monitor</strong> </p>
+<p><strong>一个显示最近一段时间内的</strong>CPU、内存、交换区及网络使用情况的视图工具。</p>
+<p>   方式五：<strong>ps aux –sort -rss</strong>  </p>
+<p>   各个线程的资源使用情况  </p>
+<p>   方式六：<strong>vmstat -s</strong></p>
+<p>​	vmstat命令显示实时的和平均的统计，覆盖CPU、内存、I&#x2F;O等内容。</p>
+<p>PS -EF  显示所有进程</p>
+<p><code>cat /dev/mem</code>是一个Linux命令，用于显示系统的内存内容。</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/d63621409040afe32abacbac9afd872.png" alt="d63621409040afe32abacbac9afd872" style="zoom:150%;">
+
+<p>解析：O(nlogn)</p>
+<p><strong>时间复杂度就是用来方便开发者估算出程序的运行时间</strong></p>
+<p><strong>大O用来表示上界的</strong>，当用它作为算法的最坏情况运行时间的上界，就是对任意数据输入的运行时间的上界。</p>
+<p>当n变得越来越大时，公式中的低阶，常量，系数三部分影响不了其增长趋势，可以直接忽略他们，只记录一个最大的量级就可以了。因此我们在计算时间复杂度时，<strong>只需关注循环次数最多的那段代码即可</strong>。</p>
+<p><strong>量级最大的那段代码时间复杂度&#x3D;总的时间复杂度</strong></p>
+<p><strong>嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</strong></p>
+<p>  该算法采用分治思想，将问题不断划分为更小的子问题进行处理。具体而言，该算法对于区间 [l, r] 中的每一个元素 a[i]，都进行了一次加 1 操作，因此其时间复杂度为 O(n)。而在递归的过程中，每次将区间一分为二，并分别对其左半部分和右半部分进行递归处理，因此其递归深度为 log2(n)，每层递归的时间复杂度为 O(n)，因此整个算法的时间复杂度为 O(nlogn)。其中，n &#x3D; r - l + 1 表示区间的长度。</p>
+<p>34.事务的原子性是指 ？ </p>
+<p>A 事务一旦提交，对数据库的改变是永久的 </p>
+<p>B 一个事务内部的操作及使用的数据对并发的其他事务是隔离的 </p>
+<p>C 事务必须是使数据库从一个一致性状态变到另一个一致性状态 </p>
+<p>D 事务中包括的所有操作要么都做，要么都不做</p>
+<p>解析：D</p>
+<p>事务的四大特性（ACID） </p>
+<p>  <strong>原子性（Atomicity</strong>）指事务要么全部成功，要么全部失败 </p>
+<p>  <strong>一致性（Consistency）</strong>事务执行前后数据完整性保持一致 </p>
+<p>  <strong>隔离性（Isolation）</strong>事务执行过程不受其他事务干扰 </p>
+<p>  <strong>持久性（durability）</strong>事务完成数据永久改变到数据库</p>
+<p>35.对于有10个结点的二叉树，如果先序遍历序列与层次历序列相同，则这棵二叉树是一棵 () </p>
+<p>A 单支树 </p>
+<p>B 完全二叉树 </p>
+<p>C 平衡二叉树 </p>
+<p>D 满二叉树</p>
+<p>解析：</p>
+<p>先序遍历的顺序是根左右。 </p>
+<p>  选项D，10个结点无法构成满二叉树，错误。 </p>
+<p>  选项A，10个结点的单支树的先序遍历序列与层次遍历序列一定相同，正确。 </p>
+<p>   选项B，10个结点的完全二叉树的先序遍历序列与层次遍历序列一定不相同，错误。  </p>
+<p> 选项C，10个结点的平衡二叉树的先序遍历序列与层次遍历序列一定不相同，错误。</p>
+<p>  所以正确选项为B。</p>
+<p>  一棵二叉树由根结点、左子树和右子树三部分组成，若规定 D、L、R 分别代表遍历根结点、遍历左子树、遍历右子树，则二叉树的遍历方式有 6 种：DLR、DRL、LDR、LRD、RDL、RLD。由于先遍历左子树和先遍历右子树在算法设计上没有本质区别，所以，只讨论三种方式：</p>
+<p><strong>DLR–前序遍历（根在前，从左往右，一棵树的根永远在左子树前面，左子树又永远在右子树前面 ）</strong></p>
+<p><strong>LDR–中序遍历（根在中，从左往右，一棵树的左子树永远在根前面，根永远在右子树前面）</strong></p>
+<p><strong>LRD–后序遍历（根在后，从左往右，一棵树的左子树永远在右子树前面，右子树永远在根前面）</strong></p>
+<p><img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/image-20230411104841461.png" alt="image-20230411104841461"></p>
+<p><img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/image-20230411104907605.png" alt="image-20230411104907605"></p>
+<p><strong>二叉搜索树</strong><br>左子树的所有节点的值均小于它的根节点的值<br>右子树的所有节点的值均大于它的根节点的值<br>它的左右子树也分别为二叉搜索树</p>
+<p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91&spm=1001.2101.3001.7020">平衡二叉树</a>是一颗高度平衡的二叉搜索树；左右两个子树的高度差绝对值不超过1，且左右两个子树都是平衡二叉树；<br>通过左旋右旋来实现平衡；</p>
+<p><img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/image-20230411110703465.png" alt="image-20230411110703465"></p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/ed89459face278117f96e71d6608da5.png" alt="ed89459face278117f96e71d6608da5" style="zoom:150%;">
+
+<p>解析：C</p>
+<p><strong>快速排序</strong>基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  </p>
+<p>最坏情况发生在每次划分过程产生的两个区间分别包含n-1个元素和1个元素的时候。</p>
+<p><img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/image-20230411112541123.png" alt="image-20230411112541123"></p>
+<p><img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/image-20230411112604316.png" alt="image-20230411112604316"></p>
+<p>37.排序的方法有很多种， ()法是基于选择排序的一种方法，是完全二叉树结构的一个重要应用。 </p>
+<p>A 插入排序 </p>
+<p>B 归并排序 </p>
+<p>C 堆排序 </p>
+<p>D 快速排序</p>
+<p>解析：C</p>
+<p>堆排序是基于选择排序的一种方法，是完全二叉树结构的一个重要应用。</p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/a8f7e4dfba80146412de0a84d95ebf4.png" alt="a8f7e4dfba80146412de0a84d95ebf4" style="zoom:150%;">
+
+<p>解析：D</p>
+<p>A * p &#x3D; new B; &#x2F;&#x2F; A 的指针指向 B 的对象。<br> 当执行 new B 时，调用 B 的无参构造函数，由于 B 继承 A，所以先调用 A 的构造函数，在 A 的构造函数中调用了虚函数 bar()，这时调用的是 A 的 bar()。<strong>如果在构造函数或析构函数中调用虚函数，则运行的是为构造函数或析构函数本人类型定义的版本</strong>，因为在构造子类的时候，<strong>首先回去调用父类的默认构造函数，此时子类还是未初始化的，所以不可能调用子类函数；</strong><br> p-&gt;foo(); 因为 foo() 不是虚函数，所以执行的是 A 的 foo()；</p>
+<p> p-&gt;bar(); 因为 bar() 是虚函数，所以执行的是 B 的 bar()。</p>
+<p>继承的好处：&#x3D;&#x3D;可以减少重复的代码&#x3D;&#x3D;</p>
+<p>class A : public B; </p>
+<p>A 类称为子类 或 派生类</p>
+<p>B 类称为父类 或 基类</p>
+<p><strong>派生类中的成员，包含两大部分</strong>：</p>
+<p>一类是从基类继承过来的，一类是自己增加的成员。</p>
+<p>从基类继承过过来的表现其共性，而新增的成员体现了其个性。</p>
+<p>继承的语法：<code>class 子类 : 继承方式  父类</code></p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/569dc5b18f5de08d12061dda5e72ceb.png" alt="569dc5b18f5de08d12061dda5e72ceb" style="zoom:150%;">
+
+<p>解析：B</p>
+<p>​		在该并发操作中，事务T2在事务T1更新A之前读取了A的值，导致T2读取到了脏数据，即未提交的事务T1更新的数据。而在T2执行回滚操作后，T2所读取的脏数据也不会回滚，因此导致了读取脏数据的问题。</p>
+<p><strong>事务隔离级别是数据库自动在事务的执行上加各种锁以解决各种事务并发执行的问题</strong></p>
+<p><strong>（1）丢失修改</strong>             </p>
+<p>​				<strong>A和B两个事物同时修改同一个数据，A修改的提交在B提交之后，导致B好像没有修改，丢失修改。</strong>          </p>
+<p><strong>（2）脏读</strong>            </p>
+<p>​				<strong>B事务修改了一个数据并未提交，A事物读取了这个数据，然后B事务回滚了，最后A又读取了一次，两次读取的数据不一致，称为脏读。</strong>          </p>
+<p><strong>（3）不可重复读</strong>            </p>
+<p>​				<strong>A事务读取了一个数据后，B事务修改了这个数据，A事务又读取了这个数据，两次读取的数据也不一致，称为不可重复读。</strong>           </p>
+<p><strong>（4）幻读</strong>            </p>
+<p>​			 <strong>A事务更新了某个字段（范围是整个数据表的）（以id&#x3D;1为条件的），B事务又插入了一条新的记录，导致A事务认为自己没有完全更新过来，就像出现幻觉一样。</strong></p>
+<img src="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/5049802369c40531698c37d246cf90a.png" alt="5049802369c40531698c37d246cf90a" style="zoom:150%;">
+
+<p>解析：A</p>
+<p>该程序的输出结果为“hello”。原因是，x%2的值为1，程序进入第一个switch语句的case 1，然后根据y的值分别输出“first”、“second”或“hello”。由于y的值为3，不匹配任何一个case，所以输出“hello”。注意在switch语句中的每个case后面都需要加上break，否则程序会继续执行下去。</p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/04/05/malloc%E5%87%BD%E6%95%B0/">malloc函数</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/%E7%AC%94%E8%AF%95-C/" rel="tag">笔试 C++</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/04/10/%E4%BA%9A%E4%BF%A1%E7%A7%91%E6%8A%80C-%E7%AC%94%E8%AF%95/">亚信科技C++笔试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/05/malloc%E5%87%BD%E6%95%B0/">malloc函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/C-%E9%9D%A2%E8%AF%95%E9%A2%98/">C++面试题（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/Lambda%E5%87%BD%E6%95%B0/">Lambda函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7/">C++11新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/03/STL/">STL</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">C++ 面试</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/malloc%E5%87%BD%E6%95%B0/" style="font-size: 10px;">malloc函数</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" style="font-size: 10px;">匿名函数  Lambda函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E7%AC%94%E8%AF%95-C/" style="font-size: 10px;">笔试 C++</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
