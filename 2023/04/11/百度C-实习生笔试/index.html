@@ -61,7 +61,142 @@
         </section>
         <article class="post-content">
         
-            
+            <h3 id="单选题"><a href="#单选题" class="headerlink" title="单选题"></a>单选题</h3><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/92d93ecacb1956f75e7f69f90517e9b.png" alt="92d93ecacb1956f75e7f69f90517e9b" style="zoom:150%;">
+
+<p>解析：D</p>
+<p>　任何出栈的元素后面出栈的元素必须满足以下三点：<br>　　<strong>1、在原序列中相对位置比它小的，必须是逆序；</strong><br>　　<strong>2、在原序列中相对位置比它大的，顺序没有要求；</strong><br>　　<strong>3、以上两点可以间插进行。</strong></p>
+<p>分析后，A只需要7个空间就能得到，B为4个空间就可得到，C5个空间  D应为6个栈空间，错误。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/55b982b6be139b8cbc8f6644b443607.png" alt="55b982b6be139b8cbc8f6644b443607"></p>
+<p>解析：D</p>
+<p>使用分页存储管理系统时，地址长度为32位，页号占20位，则剩余12位用于表示页内偏移量。因此，最大页长为2的12次方，即4096字节。</p>
+<p>使用分段存储管理系统时，地址长度为32位，段号占10位，则剩余22位用于表示段内偏移量。因此，最大段长为2的22次方，即4194304字节。</p>
+<p><strong>求地址：</strong><br>逻辑地址&#x3D;页号P+偏移量W<br>物理地址&#x3D;某程序指定页的块号+偏移量W<br><strong>其他计算：</strong><br>页表项 &#x3D;内存 &#x2F; 页面大小<br>页表占用内存 &#x3D; 页表项 * 页表大小<br>页数&#x3D;内存 &#x2F; 页面大小 &#x3D; （页表项 * 页表项大小）&#x2F; 页面大小<br>每页页表项数&#x3D;页表项 &#x2F; 页数 &#x3D; 页面大小 &#x2F; 页表项大小<br>最大内存 &#x3D; 页面大小 * 2^（页表项大小 &#x2F;B）<br>每页页表项数&#x3D;页表项 &#x2F; 页数 &#x3D; 页面大小 &#x2F; 页表项大小</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/23645bf24f7ea465419b87fff5307e6.png" alt="23645bf24f7ea465419b87fff5307e6"></p>
+<p>解析：B</p>
+<p>选项 B 错误。在SQL的三值逻辑中，可以对NULL值使用谓词，但是谓词返回的结果是unknown而不是true或false。这意味着无法确定谓词是否满足条件，因此在使用谓词进行过滤或比较时需要格外小心。</p>
+<p>选项 A、C 和 D 都是正确的说法：</p>
+<p>A. NULL不是一个值，它表示缺少值或未知值。</p>
+<p>C. 在SQL的三值逻辑中，未知的值参与逻辑运算后，其结果会被视为未知。这与正常的逻辑运算有所不同，因为在正常的逻辑运算中，未知值可能会被视为true或false，具体取决于运算符的实现方式。</p>
+<p>D. 对于SQL的三值逻辑中的NULL值，使用谓词的结果是unknown。例如，如果对NULL值使用等于谓词（“&#x3D;”），则结果将是unknown而不是true或false。</p>
+<p><strong>NULL 用于表示缺失的值或遗漏的未知数据，不是某种具体类型的值。数据表中的 NULL 值表示该值所处的字段为空，值为 NULL 的字段没有值，尤其要明白的是：NULL 值与 0 或者空字符串是不同的。</strong></p>
+<p><strong>在主流的编程语言中（C、JAVA、Python、JS等）中，逻辑值确实只有 2 个，但在 SQL 中却存在第三个逻辑值：unknown。这有点类似于我们平时所说的：对、错、不知道。</strong></p>
+<ul>
+<li><p>返回bool类型的仿函数称为<strong>谓词</strong></p>
+</li>
+<li><p>如果operator()接受一个参数，那么叫做一元谓词</p>
+</li>
+<li><p>如果operator()接受两个参数，那么叫做二元谓词</p>
+</li>
+<li><p>重载<strong>函数调用操作符</strong>的类，其对象常称为<strong>函数对象</strong></p>
+</li>
+<li><p><strong>函数对象</strong>使用重载的()时，行为类似函数调用，也叫<strong>仿函数</strong></p>
+</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li>函数对象在使用时，可以像普通函数那样调用, 可以有参数，可以有返回值</li>
+<li>函数对象超出普通函数的概念，函数对象可以有自己的状态</li>
+<li>函数对象可以作为参数传递</li>
+</ul>
+<p><strong>本质：</strong></p>
+<p>函数对象(仿函数)是一个<strong>类</strong>，不是一个函数</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/1403d0ebddfdb8cbd9861381c55b627.png" alt="1403d0ebddfdb8cbd9861381c55b627"></p>
+<p>解析：D</p>
+<p>选项 D是正确的。作业是从用户角度出发的，通常指一组相关的任务或程序，通常需要很长时间才能完成，因此作业通常是从用户角度提交的。<strong>进程是操作系统分配的资源</strong>，是正在运行的程序实例，每个进程都有自己的地址空间和系统资源，可以独立运行和交互。</p>
+<p>选项 A、B、C 都是错误的：</p>
+<p>A. 作业和进程的运行速度没有明显的区别。实际上，它们的运行速度取决于许多因素，如所需资源的数量、可用硬件资源和程序代码的效率等等。</p>
+<p>B. 作业和进程的运行频率也没有明显的区别。实际上，它们的运行频率也取决于许多因素，如所需资源的数量、可用硬件资源和程序代码的效率等等。</p>
+<p>C. 作业可以并发执行，进程也可以串行执行。作业可以并发执行，但需要操作系统支持，<strong>可以使用作业调度程序来管理多个作业</strong>。进程可以并发执行，每个进程都有自己的地址空间和系统资源，可以独立运行和交互。</p>
+<p><strong>进程和作业的区别</strong><br><strong>作业是用户需要计算机完成某项任务而要求计算机所做工作的集合。</strong>一个作业的完成要经过作业提交、作业收容、作业执行和作业完成4个阶段。而<strong>进程是已提交完毕的作业的执行过程，是资源分配的基本单位。</strong>两者的主要区别如下：</p>
+<p><strong>作业是用户向计算机提交任务的任务实体。</strong>在用户向计算机提交作业之后，系统将它放入外存中的作业等待队列中等待执行；而<strong>进程则是完成用户任务的执行实体</strong>，是向系统申请分配资源的基本单位。任一进程，只要它被创建，总有相应的部分存在于内存中。</p>
+<p>一个作业可由多个进程组成，且必须至少由一个进程组成，但一个进程不能构成多个作业。</p>
+<p>作业的概念主要用在批处理系统中。<strong>像UNIX这样的分时系统则没有作业的概念</strong>；而进程的概念则用在几乎所有的多道程序系统中。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/f87443c2aa0ebbcbdc45cbb3dc49b4b.png" alt="f87443c2aa0ebbcbdc45cbb3dc49b4b"></p>
+<p>解析：C</p>
+<p>选项 C 是正确的。其他选项都是错误的：</p>
+<p>A. Session 数据保存在服务器端，而不是客户端浏览器。</p>
+<p>B. 会话 Cookie 是存在于客户端浏览器内存中的，当浏览器关闭时，会话 Cookie 会被删除。</p>
+<p>D. Session 的安全性比 Cookie 低，因为 Session ID 是通过 Cookie 在客户端和服务器之间传递的，如果 Session ID 被窃取，攻击者可以模拟用户的身份进行恶意操作。而 Cookie 可以通过一些安全措施来加强安全性，如设置 HttpOnly 属性、Secure 属性等。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/a87f3e222002b4502d1eca306c90dc6.png" alt="a87f3e222002b4502d1eca306c90dc6"></p>
+<p>解析：n!</p>
+<p>这是一个递归关系式，可以用递归的方法来求解。根据题目所给的关系式：</p>
+<p>T(n) &#x3D; n * T(n-1) n &gt; 1</p>
+<p>当 n &#x3D; 1 时，递归终止，此时 T(1) 的值为 1。</p>
+<p>当 n &gt; 1 时，可以使用递归的方法求解 T(n)：</p>
+<p>T(n) &#x3D; n * T(n-1) &#x3D; n * (n-1) * T(n-2) &#x3D; n * (n-1) * (n-2) * T(n-3) &#x3D; … &#x3D; n * (n-1) * (n-2) * … * 1 * T(1) &#x3D; n!</p>
+<p>因此，递归关系式的解为：</p>
+<p>T(n) &#x3D; n! n &gt;&#x3D; 1</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/3c73eb4c731619cdf492506cef91a53.png" alt="3c73eb4c731619cdf492506cef91a53"></p>
+<p>解析：D</p>
+<p>A选项：ssh-add是将SSH私钥添加到ssh-agent的命令。该命令通常用于在登录时将SSH密钥添加到ssh-agent的代理中，以便在不输入密码的情况下进行SSH身份验证。”-i”参数指定要添加到代理中的SSH私钥文件，而不是公钥文件。在这种情况下，命令中的参数也不正确，因为缺少”copy”命令和目标主机的IP地址。</p>
+<p>B选项：ssh-agent是SSH身份验证代理，它管理SSH密钥并协助在不输入密码的情况下进行SSH身份验证。”-i”参数在该命令中指定要使用的私钥文件，但是，与ssh-copy-id不同，ssh-agent不能将公钥文件复制到远程主机。该选项中的路径也不正确，并且缺少”copy”命令和目标主机的IP地址。</p>
+<p>C选项：ssh-keygen是SSH密钥生成器，可以用于生成SSH密钥对、转换密钥格式等操作。”-i”参数用于将公钥文件从一种格式转换为另一种格式，但是，它与ssh-copy-id没有任何关系，也不能将公钥文件复制到远程主机。</p>
+<p>D选项：ssh-copy-id是将本地SSH公钥文件复制到远程主机上的命令。”-i”参数用于指定要复制的公钥文件。在本例中，指定要复制的公钥文件为”~&#x2F;.ssh&#x2F;id_rsa.pub”，并将其复制到root用户在192.168.7.2主机上的联户下。该命令可以实现无密码登录，因为SSH客户端会使用公钥进行身份验证。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\cbe8556b8c1d5f3af032f86934ad7f6.png" alt="cbe8556b8c1d5f3af032f86934ad7f6"></p>
+<p>解析：D</p>
+<p>系统中的资源可以分为两类，<strong>一类是可剥夺资源</strong>，是指某进程在获得这类资源后，该资源可以再被其他进程或系统剥夺。例如，优先权高的进程可以剥夺优先权低的进程的 <a href="https://hd.nowcoder.com/link.html?target=http://baike.baidu.com/view/2107226.htm">处理机</a> 。又如，内存区可由 <a href="https://hd.nowcoder.com/link.html?target=http://baike.baidu.com/view/364948.htm">存储器管理</a> 程序，把一个进程从一个存储区移到另一个存储区，此即剥夺了该进程原来占有的存储区，甚至可将一进程从内存调到外存上，可见， <a href="https://hd.nowcoder.com/link.html?target=http://baike.baidu.com/view/2089.htm">CPU</a> 和 <a href="https://hd.nowcoder.com/link.html?target=http://baike.baidu.com/view/313837.htm">主存</a> 均属于可剥夺性资源。<strong>另一类资源是不可剥夺资源</strong>，当系统把这类资源分配给某进程后，再不能强行收回，只能在进程用完后自行释放，如 <a href="https://hd.nowcoder.com/link.html?target=http://baike.baidu.com/view/220750.htm">磁带机</a> 、打印机等。</p>
+<p>竞争临时资源是一种系统资源，例如内存中的缓存或锁，它们可以被多个进程同时使用，但一次只能被一个进程占用。当多个进程竞争临时资源时，可能会导致死锁问题。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/52ab06ca5252087d651d786b2d2928d.png" alt="52ab06ca5252087d651d786b2d2928d"></p>
+<p>解析：D</p>
+<p>根据TCP的拥塞控制算法，当发生超时时，TCP会将拥塞窗口减半，这就是所谓的“慢启动退化”。因此，在本题中，当发生超时后，窗口大小将从14KB减半为7KB。经历4次RTT大小分别为 1，2，4，8，9 此时8KB&gt;7KB,则应为1，2，4，7，8结束之后变为8KB。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/710d7fe0f4c28cd4a635a53c0d55cfa.png" alt="710d7fe0f4c28cd4a635a53c0d55cfa"></p>
+<p>解析：D</p>
+<p> <strong>串结构的堆分配存储与定长顺序存储方式一样，也是以一组地址连续的存储单元存放串值字符序列，但它们的存储空间是在程序执行过程中动态分配而得。</strong></p>
+<p>堆串的存储空间是在程序执行过程中动态分配的，<strong>所以不能直接使用预先分配的内存空间</strong>。对于串插入操作strinsert(S,pos,T)，需要先为插入后的新串分配一段新的空间，然后将原串S中的[pos,|S|]部分复制到新串中，再将T插入到新串的[pos, pos+|T|-1]位置，最后将新串的地址返回。这个操作需要借助动态内存分配函数，如malloc等。</p>
+<p>选项A和B描述是正确的，堆存储结构在内存中开辟的是一块地址连续的存储空间，并且在堆存储结构下，串仍然是以数组存储的字符序列表示。</p>
+<p>选项C描述也是正确的，堆串的存储空间是在程序执行过程中动态分配的，可以使用动态内存分配函数进行动态内存分配。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/da0f6bcbe78d6354441e1c3eed38faa.png" alt="da0f6bcbe78d6354441e1c3eed38faa"></p>
+<p>解析：A</p>
+<p>MBR（Master Boot Record，主引导记录）是计算机硬盘分区中第一个扇区的第一个字节到第510字节的446字节空间，通常用于存储引导程序和分区表。MBR主要包含以下四个部分：</p>
+<ol>
+<li><strong>引导程序</strong>：MBR中的第1个扇区的第1个字节到第446字节用于存储引导程序。引导程序是一个小程序，负责引导操作系统的加载和运行。在计算机启动时，BIOS会将MBR中的引导程序加载到内存中并执行，以启动操作系统。</li>
+<li><strong>分区表</strong>：MBR中的第1个扇区的第446字节到第510字节用于存储分区表。分区表是一个记录硬盘分区信息的表格，它包含了硬盘上所有主分区和扩展分区的信息，如起始位置、大小和分区类型等。MBR中的分区表最多可以记录4个主分区或3个主分区和1个扩展分区。</li>
+<li><strong>结束标志</strong>：MBR中的第1个扇区的第511字节和第512字节用于存储结束标志。结束标志通常是0x55AA，用于标识MBR的结尾。</li>
+<li><strong>主引导记录签名</strong>（MBR Signature）：MBR Signature是一个位于MBR结尾处的两个字节的特殊标记，其十六进制值为0x55AA。操作系统的引导加载程序会检查MBR结尾处是否有这个标记，以验证MBR的有效性。如果MBR Signature不存在，则表示MBR无效，计算机将无法启动。</li>
+</ol>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/572c3ed9a053b912c7bd6d4aeceb4eb.png" alt="572c3ed9a053b912c7bd6d4aeceb4eb"></p>
+<p>解析：A</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/image-20230411212635722.png" alt="image-20230411212635722"></p>
+<p>元素79哈希地址为：H(79) &#x3D; 79 % 13 &#x3D; 1。</p>
+<p>插入哈希表时，元素79会被插入到下标为1的链表中。在该链表中，79排在第1个位置，因此查找长度为1。</p>
+<p>注意：链地址法成功时查找次数的分母是哈希表元素的个数，分子为纵向比较；<br>失败时，分母为哈希表的长度，分子为横向比较（几个）；</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/e2f5b829b089130757a8920b4532569.png" alt="e2f5b829b089130757a8920b4532569"></p>
+<p>解析：D</p>
+<p>选项 D 错误。虽然在 Linux 系统中自带了 FTP 命令行工具，但是不是所有基本的 FTP 操作都可以使用该工具完成，例如在 FTP 中进行加密传输、使用 SSH 等高级操作都无法通过该工具完成。此外，FTP 协议的传输过程中也存在明文传输的安全问题，因此在安全性要求较高的场景下不建议使用。</p>
+<ul>
+<li>NFS（Network File System）是一种分布式文件系统，允许在网络上的不同计算机上分享文件和存储空间。NFS协议可在不同操作系统之间实现文件共享，包括Linux和UNIX系统。通过NFS，远程计算机可以像访问本地文件一样访问共享的文件。</li>
+<li>SFTP（Secure File Transfer Protocol）是一种基于SSH协议的安全文件传输协议，提供加密传输和数据完整性验证。SFTP提供了安全的文件传输，并且比FTP更加安全。</li>
+<li>FTP（File Transfer Protocol）是一种常用的文件传输协议，可用于将文件从一个计算机传输到另一个计算机。FTP支持非常广泛，但是它不提供安全性，数据传输可能会被监听或篡改。</li>
+</ul>
+<p>总之，这些工具都是用于在不同计算机之间进行文件传输的，但各自有不同的特点和用途。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/075edd1b05e4a31d52511ab3f957309.png" alt="075edd1b05e4a31d52511ab3f957309"></p>
+<p>解析：C</p>
+<p>关系型数据库是指采用了关系模型来组织数据的数据库。简单来说，关系模式就是二维表格模型。</p>
+<p>主要代表：SQL Server，Oracle,Mysql,PostgreSQL。</p>
+<p>NoSQL非关系型数据库，主要指那些非关系型的、分布式的，且一般不保证ACID的数据存储系统，主要代表MongoDB，Redis、CouchDB。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/a692c671431613f4a58905e03a8ba78.png" alt="a692c671431613f4a58905e03a8ba78"></p>
+<p>解析：B</p>
+<p><code>LEFT JOIN</code>是一种SQL的连接（join）操作，它会返回左表中所有的记录，以及右表中匹配到的记录。如果右表中没有匹配到左表中的某个记录，那么右表中对应的记录就会返回NULL值。</p>
+<p>INNER JOIN 是 SQL 中常用的一种 JOIN 操作，表示只返回两个表中满足连接条件的行。如果一个行在一个表中有匹配，但在另一个表中没有匹配，那么这个行就不会被返回。</p>
+<p>CROSS JOIN 会返回两个表的笛卡尔积，即每个表中的每个行都会和另一个表中的每个行匹配。结果集中的行数等于两个表的行数的乘积。</p>
+<p><code>RIGHT JOIN</code> 也称为右连接，它返回右表中所有的行和符合条件的左表的行，如果左表中没有匹配的行，则结果中对应的列为 <code>NULL</code> 值。与 <code>LEFT JOIN</code> 相反，它以右表为基础进行连接。</p>
+<h3 id="不定项选择题"><a href="#不定项选择题" class="headerlink" title="不定项选择题"></a>不定项选择题</h3><p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/9ae6ad9c93400fa1618ad5ff0630e41.png" alt="9ae6ad9c93400fa1618ad5ff0630e41"></p>
+<p>解析：D</p>
+<p>对于这四组函数的声明不合法的是D。原因是在函数参数列表中，带有默认参数值的参数应该放在参数列表的最后面，而不是放在参数列表的中间。因此，声明D中的init函数是不合法的。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/bcbb02621e55cbb16f0f008b34286be.png" alt="bcbb02621e55cbb16f0f008b34286be"></p>
+<p>解析：B   优先级：访问运算符&gt;后置递增运算符&gt;解引用运算符&gt;前置递增</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/image-20230411220832624.png" alt="image-20230411220832624"></p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/b4207a6b6decb2bb4cd98f04914c65e.png" alt="b4207a6b6decb2bb4cd98f04914c65e"></p>
+<p>解析：</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\a5dd002e27c21c6d0f2bd8c9907d018.png" alt="a5dd002e27c21c6d0f2bd8c9907d018"></p>
+<p>解析：</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\0f7b96e5f2bc4b96cc0e2c707016b3c.png" alt="0f7b96e5f2bc4b96cc0e2c707016b3c"></p>
+<p>解析：</p>
+<h3 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h3><p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\74410ddf213703a0eb1ad4a577144b2.png" alt="74410ddf213703a0eb1ad4a577144b2"></p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\c7c90d19c231b5c90458e20d09a6207.png" alt="c7c90d19c231b5c90458e20d09a6207"></p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\343e28e9c11de80fa14b8bc5b5235f1.png" alt="343e28e9c11de80fa14b8bc5b5235f1"></p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\935a898f12fa97c764792530bf06495.png" alt="935a898f12fa97c764792530bf06495"></p>
+
         </article>
         <section class="post-near">
             <ul>
@@ -73,6 +208,10 @@
                 
             </ul>
         </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/C-%E7%AC%94%E8%AF%95da/" rel="tag">C++ 笔试da</a>
+            </section>
         
     
         <section class="post-author">
@@ -107,7 +246,7 @@
                 </div>
                 <div class="col-m-4">
                     <h3 class="title-tags">标签云：</h3>
-                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">C++ 面试</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/malloc%E5%87%BD%E6%95%B0/" style="font-size: 10px;">malloc函数</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" style="font-size: 10px;">匿名函数  Lambda函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E7%AC%94%E8%AF%95-C/" style="font-size: 10px;">笔试 C++</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a> <a href="/tags/%E9%9D%A2%E8%AF%95-Cookie-Session/" style="font-size: 10px;">面试 Cookie Session</a>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-%E7%AC%94%E8%AF%95da/" style="font-size: 10px;">C++ 笔试da</a> <a href="/tags/C-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">C++ 面试</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/malloc%E5%87%BD%E6%95%B0/" style="font-size: 10px;">malloc函数</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" style="font-size: 10px;">匿名函数  Lambda函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E7%AC%94%E8%AF%95-C/" style="font-size: 10px;">笔试 C++</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a> <a href="/tags/%E9%9D%A2%E8%AF%95-Cookie-Session/" style="font-size: 10px;">面试 Cookie Session</a>
                 </div>
             </div>
         </section>
