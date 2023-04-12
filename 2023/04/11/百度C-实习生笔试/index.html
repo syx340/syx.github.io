@@ -221,8 +221,8 @@
 <h3 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h3><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/74410ddf213703a0eb1ad4a577144b2.png" alt="74410ddf213703a0eb1ad4a577144b2" style="zoom:150%;">
 
 <p>解析：</p>
-<p>我们可以通过贪心的思想来解决这个问题，首先将原序列按照升序排序，然后将前 k个数字放入 k 个子序列中，每个子序列只包含一个数字，这样可以保证每个子序列的平均数最小。然后将剩余的数字均分到 k 个子序列中，这样可以保证这 k 个子序列的平均数的和最小。</p>
-<p>​	将前k-1个数的和累加到res中，因为前k-1个数要分到k个子序列中，所以它们对每个子序列的平均数之和的贡献是相同的，等于它们的平均值。然后将第k个数到第n个数的和累加到tot中，并计算出后n-k个数的个数cnt，因为后n-k个数要分到k个子序列中，所以它们对每个子序列的平均数之和的贡献是相同的，等于它们的平均值。最后将tot&#x2F;cnt加到res中，得到k个子序列的平均数之和。</p>
+<p>我们可以通过贪心的思想来解决这个问题，首先将原序列按照升序排序，然后将前 k个数字放入 k 个子序列中，每个子序列只包含一个数字，这样可以保证每个子序列的平均数最小。然后将剩余的数字均分到 k个子序列中，这样可以保证这 k 个子序列的平均数的和最小。</p>
+<p>​	将前k个数的和累加到res中，因为前k个数要分到k个子序列中，所以它们对每个子序列的平均数之和的贡献是相同的，等于它们的平均值。然后将第k个数到第n个数的和累加到tot中，并计算出后n-k个数的个数cnt，因为后n-k个数要分到k个子序列中，所以它们对每个子序列的平均数之和的贡献是相同的，等于它们的平均值。最后将tot&#x2F;cnt加到res中，得到k个子序列的平均数之和。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span>  <span class="token comment">// 包含sort函数</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
