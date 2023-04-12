@@ -187,15 +187,129 @@
 <p>解析：B   优先级：访问运算符&gt;后置递增运算符&gt;解引用运算符&gt;前置递增</p>
 <p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/image-20230411220832624.png" alt="image-20230411220832624"></p>
 <p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/b4207a6b6decb2bb4cd98f04914c65e.png" alt="b4207a6b6decb2bb4cd98f04914c65e"></p>
+<p>解析：AD</p>
+<p>B描述中，虽然栈是由系统自动分配释放，但程序员可以使用alloca()等函数来手动分配栈内存，而堆虽然需要程序员手动申请和释放，但是通过智能指针等手段，也可以避免内存泄漏的问题。</p>
+<p>C描述中，静态分配的变量也可以分配在堆上，而动态分配的变量也可以分配在栈上，所以这种区分并不准确。C提供了在<strong>栈中动态分配内存</strong>的函数<code>alloca</code>，用法和<code>malloc</code>一样，但不用<code>free</code>，因为他是在栈中分配空间，超出定义域后自动释放</p>
+<p><strong>堆和栈的区别主要有五大点：</strong> </p>
+<p>  1）申请方式不同：栈由系统自动分配，而堆是人为申请开辟的； </p>
+<p>  2）申请大小不同：栈获得的空间较小，而堆获得的空间较大； </p>
+<p>  3）申请效率的不同：栈由系统自动分配，速度较快，而堆一般速度比较慢； </p>
+<p>  4）存储内容的不同：栈在函数调用时，函数调用语句的下一条可执行语句的地址第一个进栈，然后函数各个参数进栈，其中静态变量是不进栈的，而堆中一般是在头部用一个字节存放堆的大小，堆中的具体内容是人为安排的； </p>
+<p>  5）底层不同，栈是连续的空间，而堆是不连续的空间。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/a5dd002e27c21c6d0f2bd8c9907d018.png" alt="a5dd002e27c21c6d0f2bd8c9907d018"></p>
+<p>解析：BCD</p>
+<p>解引用是返回内存地址中保存的值。</p>
+<p>选项 B 中只交换了指针的值，而不是交换指针指向的变量的值，所以是错误的。</p>
+<p>选项 C 中将 p 指向了 q 所指向的变量，但是 q 指向的变量的值没有改变，所以是错误的。</p>
+<p>选项 D 中交换了指针的指向，但是交换的不是指针所指向的变量，所以是错误的。</p>
+<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/0f7b96e5f2bc4b96cc0e2c707016b3c.png" alt="0f7b96e5f2bc4b96cc0e2c707016b3c"></p>
+<p>解析：AB</p>
+<p>C 必须在类外定义，但是不一定要初始化。 在类内的是静态成员变量的声明，并没有定义，需要在类外定义，但是定义的时候不一定就需要初始化.</p>
+<p>可以在类内初始化但是要加上const修饰作为常量</p>
+<p><strong>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</strong></p>
+<p>  <strong>class A</strong></p>
+<p>  <strong>{</strong>  </p>
+<p>​    <strong>private:</strong></p>
+<p>​    <strong>static int count ; &#x2F;&#x2F; 类内声明</strong></p>
+<p>  <strong>};</strong></p>
+<p>  <strong>int A::count &#x3D; 0 ; &#x2F;&#x2F; 类外初始化，不必再加static关键字</strong></p>
+<p>  <strong>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</strong></p>
+<p>  <strong>能在类中初始化的成员只有一种，那就是静态常量成员。</strong></p>
+<p>  <strong>此外，还需要注意的是声明和定义的区别：</strong></p>
+<p>  <strong>①变量定义：用于为变量分配存储空间，还可为变量指定初始值。程序中，变量有且仅有一个定义。</strong></p>
+<p>  <strong>②变量声明：用于向程序表明变量的类型和名字。</strong></p>
+<h3 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h3><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/74410ddf213703a0eb1ad4a577144b2.png" alt="74410ddf213703a0eb1ad4a577144b2" style="zoom:150%;">
+
 <p>解析：</p>
-<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\a5dd002e27c21c6d0f2bd8c9907d018.png" alt="a5dd002e27c21c6d0f2bd8c9907d018"></p>
+<p>我们可以通过贪心的思想来解决这个问题，首先将原序列按照升序排序，然后将前 k个数字放入 k 个子序列中，每个子序列只包含一个数字，这样可以保证每个子序列的平均数最小。然后将剩余的数字均分到 k 个子序列中，这样可以保证这 k 个子序列的平均数的和最小。</p>
+<p>​	将前k-1个数的和累加到res中，因为前k-1个数要分到k个子序列中，所以它们对每个子序列的平均数之和的贡献是相同的，等于它们的平均值。然后将第k个数到第n个数的和累加到tot中，并计算出后n-k个数的个数cnt，因为后n-k个数要分到k个子序列中，所以它们对每个子序列的平均数之和的贡献是相同的，等于它们的平均值。最后将tot&#x2F;cnt加到res中，得到k个子序列的平均数之和。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span>  <span class="token comment">// 包含sort函数</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span> k<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> k<span class="token punctuation">;</span>
+
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">nums</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        cin <span class="token operator">>></span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token comment">// 输入n以及k</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nums<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 升序排序</span>
+
+    <span class="token keyword">double</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">//平均数之和</span>
+    <span class="token keyword">double</span> tot <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 存储除前k个数字之外的数字之和</span>
+    <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>	<span class="token comment">// 存储除前k个数字之外的数字的个数</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            res <span class="token operator">+=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> 	<span class="token comment">// 前k个数字直接累加到平均数之和中</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            tot <span class="token operator">+=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>	<span class="token comment">// 后面的数字累加到tot中</span>
+            cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    res <span class="token operator">+=</span> tot <span class="token operator">/</span> cnt<span class="token punctuation">;</span>	<span class="token comment">// 计算平均数之和</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%.10f\n"</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 输出平均数之和，保留10位小数</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/c7c90d19c231b5c90458e20d09a6207.png" alt="c7c90d19c231b5c90458e20d09a6207" style="zoom:150%;">
+
 <p>解析：</p>
-<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\0f7b96e5f2bc4b96cc0e2c707016b3c.png" alt="0f7b96e5f2bc4b96cc0e2c707016b3c"></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> x<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> temp<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    string str <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        temp<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            temp <span class="token operator">+=</span> i<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp <span class="token operator">></span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                temp <span class="token operator">-=</span> i<span class="token punctuation">;</span>
+                index <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> index<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                str <span class="token operator">+=</span> <span class="token char">'r'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            c<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> index<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                str <span class="token operator">+=</span> <span class="token char">'e'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            c<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> index<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                str <span class="token operator">+=</span> <span class="token char">'d'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            c <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        x <span class="token operator">=</span> x <span class="token operator">-</span> temp<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/343e28e9c11de80fa14b8bc5b5235f1.png" alt="343e28e9c11de80fa14b8bc5b5235f1" style="zoom:150%;">
+
+<img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/935a898f12fa97c764792530bf06495.png" alt="935a898f12fa97c764792530bf06495" style="zoom:150%;">
+
 <p>解析：</p>
-<h3 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h3><p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\74410ddf213703a0eb1ad4a577144b2.png" alt="74410ddf213703a0eb1ad4a577144b2"></p>
-<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\c7c90d19c231b5c90458e20d09a6207.png" alt="c7c90d19c231b5c90458e20d09a6207"></p>
-<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\343e28e9c11de80fa14b8bc5b5235f1.png" alt="343e28e9c11de80fa14b8bc5b5235f1"></p>
-<p><img src="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/hexo-blog\source_posts\百度C-实习生笔试\935a898f12fa97c764792530bf06495.png" alt="935a898f12fa97c764792530bf06495"></p>
 
         </article>
         <section class="post-near">
