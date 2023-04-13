@@ -3,7 +3,7 @@
   <head>
      
     <meta charset="UTF-8">
-    <title>Cookie和Session的区别（面试必备） - 小孙的blog</title>
+    <title>unordered_set中end()与find()的使用 - 小孙的blog</title>
     <link rel="shortcut icon" href="/static/img/icon.png">
     <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
     
@@ -15,7 +15,7 @@
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
     <meta property="og:site_name" content="小孙的blog">
-    <meta property="og:title" content="Cookie和Session的区别（面试必备）"/>
+    <meta property="og:title" content="unordered_set中end()与find()的使用"/>
     
     <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
     
@@ -53,42 +53,131 @@
     <main>
     <div class="wrap min">
         <section class="post-title">
-            <h2>Cookie和Session的区别（面试必备）</h2>
+            <h2>unordered_set中end()与find()的使用</h2>
             <div class="post-meta">
-                <time class="date">2023.04.11</time>
+                <time class="date">2023.04.13</time>
             
             </div>
         </section>
         <article class="post-content">
         
-            <h2 id="一、共同之处："><a href="#一、共同之处：" class="headerlink" title="一、共同之处："></a>一、共同之处：</h2><p>cookie和session都是用来跟踪浏览器用户身份的会话方式。</p>
-<h2 id="二、工作原理："><a href="#二、工作原理：" class="headerlink" title="二、工作原理："></a>二、工作原理：</h2><h3 id="1-Cookie的工作原理"><a href="#1-Cookie的工作原理" class="headerlink" title="1.Cookie的工作原理"></a>1.Cookie的工作原理</h3><p>（1）浏览器端第一次发送请求到服务器端<br>（2）服务器端创建Cookie，该Cookie中包含用户的信息，然后将该Cookie发送到浏览器端<br>（3）浏览器端再次访问服务器端时会携带服务器端创建的Cookie<br>（4）服务器端通过Cookie中携带的数据区分不同的用户</p>
-<p><img src="/2023/04/11/Cookie%E5%92%8CSession%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%EF%BC%89/image-20230411162925130.png" alt="image-20230411162925130"></p>
-<h3 id="2-Session的工作原理"><a href="#2-Session的工作原理" class="headerlink" title="2.Session的工作原理"></a>2.Session的工作原理</h3><p>（1）浏览器端第一次发送请求到服务器端，服务器端创建一个Session，同时会创建一个特殊的Cookie（name为JSESSIONID的固定值，value为session对象的ID），然后将该Cookie发送至浏览器端<br>（2）浏览器端发送第N（N&gt;1）次请求到服务器端,浏览器端访问服务器端时就会携带该name为JSESSIONID的Cookie对象<br>（3）服务器端根据name为JSESSIONID的Cookie的value(sessionId),去查询Session对象，从而区分不同用户。<br>name为JSESSIONID的Cookie不存在（关闭或更换浏览器），返回1中重新去创建Session与特殊的Cookie<br>name为JSESSIONID的Cookie存在，根据value中的SessionId去寻找session对象<br>value为SessionId不存在<strong>（Session对象默认存活30分钟）</strong>，返回1中重新去创建Session与特殊的Cookie<br>value为SessionId存在，返回session对象<br>Session的工作原理图</p>
-<p><img src="/2023/04/11/Cookie%E5%92%8CSession%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%EF%BC%89/image-20230411162951209.png" alt="image-20230411162951209"></p>
-<h2 id="三、区别："><a href="#三、区别：" class="headerlink" title="三、区别："></a>三、区别：</h2><p>cookie数据保存在客户端，session数据保存在服务端。</p>
-<p>session<br>简单的说，当你登陆一个网站的时候，如果web服务器端使用的是session，那么所有的数据都保存在服务器上，客户端每次请求服务器的时候会发送当前会话sessionid，服务器根据当前sessionid判断相应的用户数据标志，以确定用户是否登陆或具有某种权限。由于数据是存储在服务器上面，所以你不能伪造。</p>
-<p>cookie<br>sessionid是服务器和客户端连接时候随机分配的，如果浏览器使用的是cookie，那么所有数据都保存在浏览器端，比如你登陆以后，服务器设置了cookie用户名，那么当你再次请求服务器的时候，浏览器会将用户名一块发送给服务器，这些变量有一定的特殊标记。服务器会解释为cookie变量，所以只要不关闭浏览器，那么cookie变量一直是有效的，所以能够保证长时间不掉线。</p>
-<p>如果你能够截获某个用户的cookie变量，然后伪造一个数据包发送过去，那么服务器还是 认为你是合法的。所以，使用cookie被攻击的可能性比较大。</p>
-<p>如果cookie设置了有效值，那么cookie会保存到客户端的硬盘上，下次在访问网站的时候，浏览器先检查有没有cookie，如果有的话，读取cookie，然后发送给服务器。</p>
-<p>所以你在机器上面保存了某个论坛cookie，有效期是一年，如果有人入侵你的机器，将你的cookie拷走，放在他机器下面，那么他登陆该网站的时候就是用你的身份登陆的。当然，伪造的时候需要注意，直接copy cookie文件到 cookie目录，浏览器是不认的，他有一个index.dat文件，存储了 cookie文件的建立时间，以及是否有修改，所以你必须先要有该网站的 cookie文件，并且要从保证时间上骗过浏览器</p>
-<p>两个都可以用来存私密的东西，session过期与否，取决于服务器的设定。cookie过期与否，可以在cookie生成的时候设置进去。</p>
-<h2 id="四、区别对比："><a href="#四、区别对比：" class="headerlink" title="四、区别对比："></a>四、区别对比：</h2><p>(1)cookie数据存放在客户的浏览器上，session数据放在服务器上<br>(2)cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,如果主要考虑到安全应当使用session<br>(3)session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，如果主要考虑到减轻服务器性能方面，应当使用COOKIE<br>(4)单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能3K。<br>(5)所以：将登陆信息等重要信息存放为SESSION;其他信息如果需要保留，可以放在COOKIE中</p>
+            <p><strong>unordered_set</strong><br>unordered_set与set非常类似，唯一的区别是set会对存进去的数据进行排序，而unordered_set是乱序排列。<br>unordered_set有如下三个特性：</p>
+<p>不再以键值对的形式存储数据，而是直接存储数据的值。而在关联式容器set中，是以键值对的方式存储的。且set与map又有所不同，set只能存储键与值相同的键值对，例如键为’a’，值为’a’。<br>容器内部存储的元素的值各不相同，即天然去重。且不能被修改。注意：set也是天然去重。<br>容器内的元素乱序存在。</p>
+<h2 id="unordered-set成员方法"><a href="#unordered-set成员方法" class="headerlink" title="unordered_set成员方法"></a>unordered_set成员方法</h2><table>
+<thead>
+<tr>
+<th>成员方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>find(key)</code></td>
+<td>查找值为key的元素，如果找到，则返回一个指向该元素的正向迭代器；如果没找到，则返回一个与end()方法相同的迭代器</td>
+</tr>
+<tr>
+<td><code>end()</code></td>
+<td>返回指向容器中最后一个元素之后位置的迭代器</td>
+</tr>
+</tbody></table>
+<h2 id="unordered-set的其他成员方法"><a href="#unordered-set的其他成员方法" class="headerlink" title="unordered_set的其他成员方法"></a>unordered_set的其他成员方法</h2><table>
+<thead>
+<tr>
+<th><code>begin()</code></th>
+<th>返回指向容器中第一个元素的正向迭代器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>end()</code></td>
+<td>返回指向容器中最后一个元素之后位置的正向迭代器</td>
+</tr>
+<tr>
+<td><code>cbegin()</code></td>
+<td>和 begin() 功能相同，只不过其返回的是 const 类型的正向迭代器</td>
+</tr>
+<tr>
+<td><code>cend()</code></td>
+<td>和 end() 功能相同，只不过其返回的是 const 类型的正向迭代器</td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td>若容器为空，则返回 true；否则 false</td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>返回当前容器中存有元素的个数</td>
+</tr>
+<tr>
+<td><code>max_size()</code></td>
+<td>返回容器所能容纳元素的最大个数，不同的操作系统，其返回值亦不相同</td>
+</tr>
+<tr>
+<td><code>find(key)</code></td>
+<td>查找以值为 key 的元素，如果找到，则返回一个指向该元素的正向迭代器；反之，则返回一个指向容器中最后一个元素之后位置的迭代器</td>
+</tr>
+<tr>
+<td><code>count(key)</code></td>
+<td>在容器中查找值为 key 的元素的个数</td>
+</tr>
+<tr>
+<td><code>equal_range(key)</code></td>
+<td>返回一个 pair 对象，其包含 2 个迭代器，用于表明当前容器中值为 key 的元素所在的范围。</td>
+</tr>
+<tr>
+<td><code>emplace()</code></td>
+<td>向容器中添加新元素，效率比 insert() 方法高。</td>
+</tr>
+<tr>
+<td><code>emplace_hint()</code></td>
+<td>向容器中添加新元素，效率比 insert() 方法高</td>
+</tr>
+<tr>
+<td><code>insert()</code></td>
+<td>向容器中添加新元素</td>
+</tr>
+<tr>
+<td><code>erase()</code></td>
+<td>删除指定元素</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>清空容器，即删除容器中存储的所有元素</td>
+</tr>
+<tr>
+<td><code>swap()</code></td>
+<td>交换 2 个 unordered_map 容器存储的元素，前提是必须保证这 2 个容器的类型完全相等</td>
+</tr>
+<tr>
+<td><code>bucket_count()</code></td>
+<td>返回当前容器底层存储元素时，使用桶（一个线性链表代表一个桶）的数量</td>
+</tr>
+<tr>
+<td><code>max_bucket_count()</code></td>
+<td>返回当前系统中，unordered_map 容器底层最多可以使用多少桶</td>
+</tr>
+<tr>
+<td><code>bucket_size()</code></td>
+<td>返回第 n 个桶中存储元素的数量</td>
+</tr>
+<tr>
+<td><code>bucket()</code></td>
+<td>返回值为 key 的元素所在桶的编号</td>
+</tr>
+</tbody></table>
 
         </article>
         <section class="post-near">
             <ul>
                 
-                    <li>上一篇: <a href="/2023/04/13/unordered-set%E4%B8%ADend-%E4%B8%8Efind-%E7%9A%84%E4%BD%BF%E7%94%A8/">unordered_set中end()与find()的使用</a></li>
+                    <li>上一篇: 看完啦 (つд⊂)</li>
                 
                 
-                    <li>下一篇: <a href="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/">百度C++实习生笔试</a></li>
+                    <li>下一篇: <a href="/2023/04/11/Cookie%E5%92%8CSession%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%EF%BC%89/">Cookie和Session的区别（面试必备）</a></li>
                 
             </ul>
         </section>
         
             <section class="post-tags">
-            <a class="-none-link" href="/tags/%E9%9D%A2%E8%AF%95-Cookie-Session/" rel="tag">面试 Cookie Session</a>
+            <a class="-none-link" href="/tags/set%E5%A4%A9%E7%84%B6%E5%8E%BB%E9%87%8D/" rel="tag">set天然去重</a>
             </section>
         
     
