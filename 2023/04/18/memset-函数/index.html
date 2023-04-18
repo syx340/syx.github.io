@@ -3,7 +3,7 @@
   <head>
      
     <meta charset="UTF-8">
-    <title>TCP协议 - 小孙的blog</title>
+    <title>memset()函数 - 小孙的blog</title>
     <link rel="shortcut icon" href="/static/img/icon.png">
     <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
     
@@ -15,7 +15,7 @@
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
     <meta property="og:site_name" content="小孙的blog">
-    <meta property="og:title" content="TCP协议"/>
+    <meta property="og:title" content="memset()函数"/>
     
     <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
     
@@ -53,51 +53,45 @@
     <main>
     <div class="wrap min">
         <section class="post-title">
-            <h2>TCP协议</h2>
+            <h2>memset()函数</h2>
             <div class="post-meta">
-                <time class="date">2023.03.28</time>
+                <time class="date">2023.04.18</time>
             
             </div>
         </section>
         <article class="post-content">
         
-            <p><strong>什么是TCP协议？</strong><br>    TCP( Transmission control protocol )即传输控制协议，<strong>是一种面向连接、可靠的数据传输协议，它是为了在不可靠的互联网上提供可靠的端到端字节流而专门设计的一个传输协议。</strong></p>
-<p>面向连接：数据传输之前客户端和服务器端必须建立连接<br>可靠的：数据传输是有序的 要对数据进行校验</p>
-<h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a><strong>TCP三次握手</strong></h2><p>​	为了保证客户端和服务器端的可靠连接，TCP建立连接时必须要进行三次会话，也叫TCP三次握手，进行三次握手的目的是为了确认双方的接收能力和发送能力是否正常。</p>
-<p><strong>TCP建立连接过程</strong></p>
-<p><img src="/2023/03/28/TCP/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg"></p>
-<p>最开始的时候客户端和服务器都是处于CLOSED关闭状态。主动打开连接的为客户端，被动打开连接的是服务器。</p>
-<p>TCP服务器进程先创建传输控制块TCB，时刻准备接受客户进程的连接请求，此时服务器就进入了 LISTEN 监听状态</p>
-<p>第一次握手 TCP客户进程也是先创建传输控制块TCB，然后向服务器发出连接请求报文，这是报文首部中的同部位SYN&#x3D;1，同时选择一个初始序列号 seq&#x3D;x ，此时，TCP客户端进程进入了 SYN-SENT 同步已发送状态</p>
-<p>第二次握手 TCP服务器收到请求报文后，如果同意连接，则会向客户端发出确认报文。确认报文中应该 ACK&#x3D;1，SYN&#x3D;1，确认号是ack&#x3D;x+1，同时也要为自己初始化一个序列号 seq&#x3D;y，此时，TCP服务器进程进入了 SYN-RCVD 同步收到状态</p>
-<p>第三次握手 TCP客户端收到确认后，还要向服务器给出确认。确认报文的ACK&#x3D;1，ack&#x3D;y+1，自己的序列号seq&#x3D;x+1，此时，TCP连接建立，客户端进入ESTABLISHED已建立连接状态 触发三次握手</p>
-<p><strong>为什么要进行第三次握手？</strong><br>主要原因：防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误</p>
-<p>第一次握手： 客户端向服务器端发送报文<br>证明客户端的发送能力正常<br>第二次握手：服务器端接收到报文并向客户端发送报文<br>证明服务器端的接收能力、发送能力正常<br>第三次握手：客户端向服务器发送报文<br>证明客户端的接收能力正常</p>
-<p><strong>如果采用两次握手会出现以下情况：</strong><br>    客户端向服务器端发送的请求报文由于网络等原因滞留，未能发送到服务器端，此时连接请求报文失效，客户端会再次向服务器端发送请求报文，之后与服务器端建立连接，当连接释放后，由于网络通畅了，第一次客户端发送的请求报文又突然到达了服务器端，这条请求报文本该失效了，但此时服务器端误认为客户端又发送了一次连接请求，两次握手建立好连接，此时客户端忽略服务器端发来的确认，也不发送数据，造成不必要的错误和网络资源的浪费。</p>
-<p>​	如果采用三次握手的话，就算那条失效的报文发送到服务器端，服务器端确认并向客户端发送报文，但此时客户端不会发出确认，由于客户端没有确认，由于服务器端没有接收到确认，就会知道客户端没有请求连接。</p>
-<h2 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h2><p>建立TCP连接需要三次握手，终止TCP连接需要四次挥手</p>
-<p><img src="/2023/03/28/TCP/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg"></p>
-<p>数据传输完毕后，双方都可释放连接。最开始的时候，客户端和服务器都是处于ESTABLISHED状态，然后客户端主动关闭，服务器被动关闭。</p>
-<p>第一次挥手 客户端发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN&#x3D;1，其序列号为seq&#x3D;u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态</p>
-<p>第二次挥手 服务器端接收到连接释放报文后，发出确认报文，ACK&#x3D;1，ack&#x3D;u+1，并且带上自己的序列号seq&#x3D;v，此时，服务端就进入了CLOSE-WAIT 关闭等待状态</p>
-<p>第三次挥手 客户端接收到服务器端的确认请求后，客户端就会进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文，服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</p>
-<p>第四次挥手 客户端收到服务器的连接释放报文后，必须发出确认，ACK&#x3D;1，ack&#x3D;w+1，而自己的序列号是seq&#x3D;u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态，但此时TCP连接还未终止，必须要经过2MSL后（最长报文寿命），当客户端撤销相应的TCB后，客户端才会进入CLOSED关闭状态，服务器端接收到确认报文后，会立即进入CLOSED关闭状态，到这里TCP连接就断开了，四次挥手完成</p>
-<p>为什么客户端要等待2MSL？<br>主要原因是为了保证客户端发送那个的第一个ACK报文能到到服务器，因为这个ACK报文可能丢失，并且2MSL是任何报文在网络上存在的最长时间，超过这个时间报文将被丢弃，这样新的连接中不会出现旧连接的请求报文。</p>
+            <h3 id="memset-函数介绍"><a href="#memset-函数介绍" class="headerlink" title="memset()函数介绍"></a>memset()函数介绍</h3><p>首先来看函数原型</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token operator">*</span><span class="token function">memset</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<p>解释：复制字符 c（一个无符号字符）到参数 str 所指向的字符串的前 n 个字符。<br>作用：是在一段内存块中填充某个给定的值，它是对较大的结构体或数组进行清零操作的一种最快方法<br>头文件：C中#include&lt;string.h&gt;，C++中#include<cstring><br>看着介绍其实函数作用非常简单，就是用于初始化，但是需要注意的是memset赋值的时候是按字节赋值，是将参数化成二进制之后填入一个字节。就比如前面的例子中，想要通过memset(a,100,sizeof a)给int类型的数组赋值，你给第一个字节的是一百，转成二进制就是0110 0100，而int有四个字节，也就是说，一个int被赋值为0110 0100,0110 0100,0110 0100,0110 0100，对应的十进制是1684300900，根本不是你想要赋的值100，这也就解释了为什么数组中的元素的值都为1684300900。</cstring></p>
+<h3 id="memset赋值时只能赋值为0？"><a href="#memset赋值时只能赋值为0？" class="headerlink" title="memset赋值时只能赋值为0？"></a>memset赋值时只能赋值为0？</h3><p>答案肯定不是，比如任意字符都是可以的，初始化成0是最常用的。int类型的一般都是赋值0或-1，其他的值都不行。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>为地址str开始的n个字节赋值c，注意：是逐个字节赋值，str开始的n个字节中的每个字节都赋值为c。<br>（1） 若str指向char型地址，value可为任意字符值；<br>（2） 若str指向非char型，如int型地址，要想赋值正确，value的值只能是-1或0，因为-1和0转化成二进制后每一位都是一样的，设int型占4个字节，则-1&#x3D;0XFFFFFFFF, 0&#x3D;0X00000000。</p>
+<p>举例：给数组赋值-1</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> A<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+<span class="token function">memset</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> A<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="memset初始化为无穷大"><a href="#memset初始化为无穷大" class="headerlink" title="memset初始化为无穷大"></a>memset初始化为无穷大</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">memset</span><span class="token punctuation">(</span>a <span class="token punctuation">,</span> <span class="token number">0x3f</span> <span class="token punctuation">,</span> <span class="token keyword">sizeof</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<p>通过memset函数的介绍，上述初始化是将数组a的每个元素赋值为0x3f3f3f3f。0x3f3f3f3f 真的是个非常精巧的常量<br>他的十进制是 1061109567也就是10^9级别的，和0x7fffffff一个数量级，0x7fffffff是int类型的最大值，即2^31-1&#x3D;2,147,483,647。</p>
 
         </article>
         <section class="post-near">
             <ul>
                 
-                    <li>上一篇: <a href="/2023/03/29/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li>
+                    <li>上一篇: 看完啦 (つд⊂)</li>
                 
                 
-                    <li>下一篇: 看完啦 (つд⊂)</li>
+                    <li>下一篇: <a href="/2023/04/13/unordered-set%E4%B8%ADend-%E4%B8%8Efind-%E7%9A%84%E4%BD%BF%E7%94%A8/">unordered_set中end()与find()的使用</a></li>
                 
             </ul>
         </section>
         
             <section class="post-tags">
-            <a class="-none-link" href="/tags/TCP/" rel="tag">TCP</a>
+            <a class="-none-link" href="/tags/memset-%E5%87%BD%E6%95%B0/" rel="tag">memset()函数</a>
             </section>
         
     
