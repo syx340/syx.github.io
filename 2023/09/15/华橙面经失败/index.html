@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>华橙面经失败 - 小孙的blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小孙的blog">
+    <meta property="og:title" content="华橙面经失败"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://api.paugram.com/wallpaper?source=gh) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小孙的blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>华橙面经失败</h2>
+            <div class="post-meta">
+                <time class="date">2023.09.15</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h2 id="简历上一知半解的一定不要写！！！"><a href="#简历上一知半解的一定不要写！！！" class="headerlink" title="简历上一知半解的一定不要写！！！"></a>简历上一知半解的一定不要写！！！</h2><h2 id="1-TS流与PS流"><a href="#1-TS流与PS流" class="headerlink" title="1.TS流与PS流"></a>1.TS流与PS流</h2><p>PS流（Program Stream）和 TS流（Transport Stream）都是数字视频编码的封装格式，主要用于流媒体的传输和存储。下面是它们的简要介绍：</p>
+<ol>
+<li><strong>PS流（Program Stream）</strong>:<ul>
+<li>主要用于存储媒体，如DVD。</li>
+<li>设计目标是为了在误差较少的通信或存储环境中工作。</li>
+<li>PS流只能封装一个视频和一个音频，不适合传输多个音频或视频。</li>
+<li>通常不包含额外的错误校正信息，因为它假设底层的存储或传输机制提供了相对可靠的数据传输。</li>
+</ul>
+</li>
+<li><strong>TS流（Transport Stream）</strong>:<ul>
+<li>主要用于数字电视广播和流媒体应用。</li>
+<li>专为传输设计，在一个信道中可以传输多个音频、视频和数据流。</li>
+<li>具有容错功能，因此更适用于可能出现数据丢失的环境，例如无线传输。</li>
+<li>TS流可以包括额外的错误校正信息，使其更加适合于可能存在干扰的传输环境。</li>
+</ul>
+</li>
+</ol>
+<p>简而言之，PS流更适合于存储应用，而TS流设计得更适合于流媒体传输。在数字电视和其他流媒体应用中，TS流的容错和多路复用特性使其成为更受欢迎的选择。</p>
+<h2 id="2-IO复用"><a href="#2-IO复用" class="headerlink" title="2.IO复用"></a>2.IO复用</h2><p>I&#x2F;O复用允许一个进程监视多个文件描述符（通常是网络套接字），以查看它们是否处于可读、可写或异常状态。</p>
+<p>I&#x2F;O复用技术主要解决以下问题：如果你有多个I&#x2F;O操作，你如何不使用多线程或多进程，而只用一个线程或进程来同时等待所有的I&#x2F;O操作完成。</p>
+<p>常用的I&#x2F;O复用技术包括：</p>
+<ol>
+<li><strong>select</strong>：<ul>
+<li>最早和广泛支持的I&#x2F;O复用方法。</li>
+<li>使用一个位掩码来表示你感兴趣的文件描述符和事件。</li>
+<li>缺点是当监视的描述符数量增长时，效率降低，而且有文件描述符的数量限制。</li>
+</ul>
+</li>
+<li><strong>poll</strong>：<ul>
+<li>与select类似，但不受文件描述符数量的限制。</li>
+<li>使用结构数组而不是位掩码来表示感兴趣的文件描述符。</li>
+</ul>
+</li>
+<li><strong>epoll</strong>：<ul>
+<li>Linux特有的I&#x2F;O复用解决方案，相对于select和poll，它更加高效。</li>
+<li>它不是线性扫描所有文件描述符，而是通过回调机制来直接获得已经准备好的描述符。</li>
+<li>使用内核和用户空间之间的共享内存来减少数据复制操作。</li>
+</ul>
+</li>
+</ol>
+<p>I&#x2F;O复用的优点：</p>
+<ul>
+<li>能够处理大量并发连接，而不需要为每个连接创建线程或进程。</li>
+<li>节省了线程和进程创建、销毁的开销。</li>
+<li>减少了上下文切换带来的开销。</li>
+</ul>
+<p>I&#x2F;O复用的缺点：</p>
+<ul>
+<li>对于某些高负载的短连接，使用专门的线程或进程可能会更高效。</li>
+<li>需要更复杂的编程模型。</li>
+</ul>
+<h2 id="3-TCP和UDP"><a href="#3-TCP和UDP" class="headerlink" title="3.TCP和UDP"></a>3.TCP和UDP</h2><p>TCP（Transmission Control Protocol，传输控制协议）和UDP（User Datagram Protocol，用户数据报协议）是两种主要的、在互联网协议簇（IP）之上的传输层协议。它们有各自的特点和适用场景，以下是它们的主要区别和特性：</p>
+<h3 id="TCP："><a href="#TCP：" class="headerlink" title="TCP："></a>TCP：</h3><ol>
+<li><strong>连接导向</strong>：在数据传输之前，TCP要求建立一个连接。这通常是通过所谓的“三次握手”完成的。</li>
+<li><strong>可靠性</strong>：TCP提供了数据包排序和确认机制，确保数据正确无误地从发送端传输到接收端。丢失的数据包将被重新发送。</li>
+<li><strong>流量控制</strong>：TCP使用窗口机制来控制发送方和接收方之间的数据传输速率，从而防止接收方被发送方的数据淹没。</li>
+<li><strong>拥塞控制</strong>：当网络中的数据包太多时，TCP会减少其数据发送速率。</li>
+<li><strong>字节流</strong>：TCP将应用程序发送的数据视为一个连续的字节流，而没有边界。</li>
+</ol>
+<h3 id="UDP："><a href="#UDP：" class="headerlink" title="UDP："></a>UDP：</h3><ol>
+<li><strong>无连接</strong>：UDP不需要建立连接，发送方可以直接发送数据。</li>
+<li><strong>不可靠性</strong>：UDP不保证数据包的顺序，也不保证数据包的送达。因此，有可能数据包丢失、重复或乱序。</li>
+<li><strong>无流量和拥塞控制</strong>：UDP没有提供流量控制或拥塞控制机制。</li>
+<li><strong>数据报文</strong>：与TCP不同，UDP在应用程序之间发送和接收有明确边界的数据报文。</li>
+<li><strong>低开销</strong>：因为UDP没有TCP那样复杂的控制机制，所以它通常具有更低的延迟和更高的吞吐量。</li>
+</ol>
+<h3 id="适用场景："><a href="#适用场景：" class="headerlink" title="适用场景："></a>适用场景：</h3><p><strong>TCP</strong> 通常用于需要可靠性和数据完整性的应用，如Web浏览（HTTP&#x2F;HTTPS）、电子邮件（SMTP&#x2F;IMAP&#x2F;POP3）、文件传输（FTP）等。</p>
+<p><strong>UDP</strong> 通常用于不需要每个数据包都得到确认的应用，或者那些自己在应用层实现了错误恢复机制的应用，如实时音频&#x2F;视频流（VoIP、IPTV）、域名系统（DNS）查询、网络游戏等。</p>
+<p>总之，选择TCP还是UDP取决于应用的需求：是需要可靠性和数据完整性，还是低延迟和高吞吐量。</p>
+<h2 id="4-sizeof与strlen，size（）"><a href="#4-sizeof与strlen，size（）" class="headerlink" title="4.sizeof与strlen，size（）"></a>4.sizeof与strlen，size（）</h2><ul>
+<li><code>sizeof</code> 是一个关于内存空间大小的运算符（会统计字符串的结束符）。（字节数）</li>
+<li><code>strlen</code> 是一个关于C风格字符串长度的函数。</li>
+<li><code>size()</code>与length() 效果相同，size()是一个关于C++ STL容器中元素数量的成员函数。</li>
+</ul>
+<h2 id="5-线程和进程的区别"><a href="#5-线程和进程的区别" class="headerlink" title="5.线程和进程的区别"></a>5.线程和进程的区别</h2><p>1.一个进程可以有多个线程</p>
+<p>2.<strong>资源分配</strong>:</p>
+<ul>
+<li><strong>进程</strong>: 每个进程都有自己的独立的内存和系统资源。</li>
+<li><strong>线程</strong>: 线程共享其父进程的内存和系统资源。</li>
+</ul>
+<p>3.<strong>开销</strong>:</p>
+<ul>
+<li><strong>进程</strong>: 进程的创建、维护和终止都需要相对较大的开销。</li>
+<li><strong>线程</strong>: 与进程相比，线程的创建、维护和终止的开销较小。</li>
+</ul>
+<p>4.<strong>通信</strong>:</p>
+<ul>
+<li><strong>进程</strong>: 进程间通信(IPC)相对复杂，通常需要使用管道、消息队列、套接字等机制。</li>
+<li><strong>线程</strong>: 由于线程共享相同的地址空间，它们可以直接访问同一进程中的其他线程的数据结构，但需要使用同步原语（如互斥锁、信号量等）来防止并发问题。</li>
+</ul>
+<p>5.<strong>存储结构</strong>:</p>
+<ul>
+<li><strong>进程</strong>: 每个进程都有自己的单独的地址空间、全局变量、文件描述符等。</li>
+<li><strong>线程</strong>: 所有线程共享同一个地址空间、全局变量等，但每个线程都有自己的程序计数器、寄存器、堆栈和状态。</li>
+</ul>
+<h2 id="6-变量存放"><a href="#6-变量存放" class="headerlink" title="6.变量存放"></a>6.变量存放</h2><ol>
+<li><strong>栈（Stack）</strong>:<ul>
+<li><strong>定义</strong>: 栈是一个后进先出（LIFO）的数据结构，用于存储局部变量。</li>
+<li><strong>变量类型</strong>: 函数内部声明的局部变量、函数参数。</li>
+<li><strong>生命周期</strong>: 这些变量在函数被调用时创建，并在函数返回时被销毁。</li>
+<li><strong>注意</strong>: 栈的大小是有限的。如果你有一个需要大量内存的局部变量（例如，一个非常大的数组），可能会导致栈溢出。</li>
+</ul>
+</li>
+<li><strong>堆（Heap）</strong>:<ul>
+<li><strong>定义</strong>: 堆是用于动态内存分配的内存区域。</li>
+<li><strong>变量类型</strong>: 通过 <code>new</code> (C++标准库中的 <code>malloc</code> 和相关函数) 分配的变量或对象。</li>
+<li><strong>生命周期</strong>: 这些变量或对象在被明确删除（通过 <code>delete</code> 或 <code>free</code>）之前一直存在。</li>
+<li><strong>注意</strong>: 未经管理的堆内存可能会导致内存泄漏。C++11及之后的版本引入了智能指针（如 <code>std::shared_ptr</code> 和 <code>std::unique_ptr</code>）来帮助管理动态分配的对象。</li>
+</ul>
+</li>
+<li><strong>静态存储区域</strong>:<ul>
+<li><strong>定义</strong>: 用于存储全局变量、静态变量和常量。</li>
+<li><strong>变量类型</strong>: 在函数外部声明的变量（全局变量）、在函数内部或类中使用 <code>static</code> 修饰符声明的变量。</li>
+<li><strong>生命周期</strong>: 这些变量在程序开始时创建，并在程序结束时销毁。</li>
+</ul>
+</li>
+<li><strong>常量存储区域</strong>:<ul>
+<li><strong>定义</strong>: 用于存储常量值，如字符串常量。</li>
+<li><strong>变量类型</strong>: 使用 <code>const</code> 修饰符声明的变量。</li>
+<li><strong>生命周期</strong>: 这些常量的生命周期取决于它们是如何声明的。例如，局部的 <code>const</code> 变量会存在于栈上，而全局的 <code>const</code> 变量会存在于静态存储区域。</li>
+</ul>
+</li>
+<li><strong>线程存储持续性</strong>:<ul>
+<li><strong>定义</strong>: C++11 引入了线程存储持续性，用于单个线程内的变量存储。</li>
+<li><strong>变量类型</strong>: 使用 <code>thread_local</code> 修饰符声明的变量。</li>
+<li><strong>生命周期</strong>: 这些变量在关联的线程的生命周期内存在。</li>
+</ul>
+</li>
+</ol>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2023/05/10/stol-%E4%B8%8E-stoll%E5%87%BD%E6%95%B0/">stol 与 stoll函数</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/%E9%9D%A2%E7%BB%8F-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/" rel="tag">面经 项目经验</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://th.bing.com/th/id/R.d68f3556e3d9c56a0c459eafffa1eaea?rik=hNoYIA%2fQADAlpA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fc_zoom%2ch_231%2fimages%2f20181105%2f270c5d2d0b584ffd85458ff865a1422b.png&ehk=QdGXn3jm3gWO%2fB3HAThLSoLqxed%2bmzpexulMD4FhFqA%3d&risl=&pid=ImgRaw&r=0" alt="SYX" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>SYX</h4>
+                <p>一只努力学习的小垃圾</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/09/15/%E5%8D%8E%E6%A9%99%E9%9D%A2%E7%BB%8F%E5%A4%B1%E8%B4%A5/">华橙面经失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/05/10/stol-%E4%B8%8E-stoll%E5%87%BD%E6%95%B0/">stol 与 stoll函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/18/memset-%E5%87%BD%E6%95%B0/">memset()函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/13/unordered-set%E4%B8%ADend-%E4%B8%8Efind-%E7%9A%84%E4%BD%BF%E7%94%A8/">unordered_set中end()与find()的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/11/Cookie%E5%92%8CSession%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%EF%BC%89/">Cookie和Session的区别（面试必备）</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/04/11/%E7%99%BE%E5%BA%A6C-%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/">百度C++实习生笔试</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives%20%20/%20%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6%E5%A4%B9/2023/03/">March 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-%E7%AC%94%E8%AF%95/" style="font-size: 10px;">C++ 笔试</a> <a href="/tags/C-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">C++ 面试</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/STL-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">STL 数据结构</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/getline-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">getline()函数</a> <a href="/tags/malloc%E5%87%BD%E6%95%B0/" style="font-size: 10px;">malloc函数</a> <a href="/tags/memset-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">memset()函数</a> <a href="/tags/set%E5%A4%A9%E7%84%B6%E5%8E%BB%E9%87%8D/" style="font-size: 10px;">set天然去重</a> <a href="/tags/stol-stoll/" style="font-size: 10px;">stol() stoll()</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-Lambda%E5%87%BD%E6%95%B0/" style="font-size: 10px;">匿名函数  Lambda函数</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E7%AC%94%E8%AF%95-C/" style="font-size: 10px;">笔试 C++</a> <a href="/tags/%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">联系方式</a> <a href="/tags/%E9%9D%A2%E7%BB%8F-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">面经 项目经验</a> <a href="/tags/%E9%9D%A2%E8%AF%95-Cookie-Session/" style="font-size: 10px;">面试 Cookie Session</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">小孙的blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
