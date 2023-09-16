@@ -157,36 +157,181 @@
 <li><strong>线程</strong>: 所有线程共享同一个地址空间、全局变量等，但每个线程都有自己的程序计数器、寄存器、堆栈和状态。</li>
 </ul>
 <h2 id="6-变量存放"><a href="#6-变量存放" class="headerlink" title="6.变量存放"></a>6.变量存放</h2><ol>
-<li><strong>栈（Stack）</strong>:<ul>
+<li><p><strong>栈（Stack）</strong>:</p>
+<ul>
 <li><strong>定义</strong>: 栈是一个后进先出（LIFO）的数据结构，用于存储局部变量。</li>
 <li><strong>变量类型</strong>: 函数内部声明的局部变量、函数参数。</li>
 <li><strong>生命周期</strong>: 这些变量在函数被调用时创建，并在函数返回时被销毁。</li>
 <li><strong>注意</strong>: 栈的大小是有限的。如果你有一个需要大量内存的局部变量（例如，一个非常大的数组），可能会导致栈溢出。</li>
 </ul>
 </li>
-<li><strong>堆（Heap）</strong>:<ul>
+<li><p><strong>堆（Heap）</strong>:</p>
+<ul>
 <li><strong>定义</strong>: 堆是用于动态内存分配的内存区域。</li>
 <li><strong>变量类型</strong>: 通过 <code>new</code> (C++标准库中的 <code>malloc</code> 和相关函数) 分配的变量或对象。</li>
 <li><strong>生命周期</strong>: 这些变量或对象在被明确删除（通过 <code>delete</code> 或 <code>free</code>）之前一直存在。</li>
 <li><strong>注意</strong>: 未经管理的堆内存可能会导致内存泄漏。C++11及之后的版本引入了智能指针（如 <code>std::shared_ptr</code> 和 <code>std::unique_ptr</code>）来帮助管理动态分配的对象。</li>
 </ul>
 </li>
-<li><strong>静态存储区域</strong>:<ul>
+<li><p><strong>静态存储区域</strong>:</p>
+<ul>
 <li><strong>定义</strong>: 用于存储全局变量、静态变量和常量。</li>
 <li><strong>变量类型</strong>: 在函数外部声明的变量（全局变量）、在函数内部或类中使用 <code>static</code> 修饰符声明的变量。</li>
 <li><strong>生命周期</strong>: 这些变量在程序开始时创建，并在程序结束时销毁。</li>
 </ul>
 </li>
-<li><strong>常量存储区域</strong>:<ul>
+<li><p><strong>常量存储区域</strong>:</p>
+<ul>
 <li><strong>定义</strong>: 用于存储常量值，如字符串常量。</li>
 <li><strong>变量类型</strong>: 使用 <code>const</code> 修饰符声明的变量。</li>
 <li><strong>生命周期</strong>: 这些常量的生命周期取决于它们是如何声明的。例如，局部的 <code>const</code> 变量会存在于栈上，而全局的 <code>const</code> 变量会存在于静态存储区域。</li>
 </ul>
 </li>
-<li><strong>线程存储持续性</strong>:<ul>
+<li><p><strong>线程存储持续性</strong>:</p>
+<ul>
 <li><strong>定义</strong>: C++11 引入了线程存储持续性，用于单个线程内的变量存储。</li>
 <li><strong>变量类型</strong>: 使用 <code>thread_local</code> 修饰符声明的变量。</li>
 <li><strong>生命周期</strong>: 这些变量在关联的线程的生命周期内存在。</li>
+</ul>
+<h2 id="7-锁"><a href="#7-锁" class="headerlink" title="7.锁"></a>7.锁</h2></li>
+</ol>
+<p>在C++中，多线程编程常常涉及到对共享资源的并发访问，这可能会导致数据不一致或其他意想不到的问题。为了确保资源安全地被多个线程访问，我们使用锁（或互斥量）来同步线程。</p>
+<h2 id="8-容器迭代器失效问题"><a href="#8-容器迭代器失效问题" class="headerlink" title="8.容器迭代器失效问题"></a>8.容器迭代器失效问题</h2><p>在C++的STL容器中，迭代器失效是一个常见问题。当容器中的元素被修改、删除或新增时，已存在的迭代器可能会失效，即它们可能不再指向预期的元素或变得完全不可用。</p>
+<h2 id="9-三次握手和四次挥手"><a href="#9-三次握手和四次挥手" class="headerlink" title="9.三次握手和四次挥手"></a>9.三次握手和四次挥手</h2><h2 id="1-三次握手（TCP连接建立）"><a href="#1-三次握手（TCP连接建立）" class="headerlink" title="1. 三次握手（TCP连接建立）"></a>1. 三次握手（TCP连接建立）</h2><p>三次握手的目的是在客户端和服务器之间建立一个可靠的连接。</p>
+<ol>
+<li><strong>SYN</strong>：客户端选择一个初始序列号x，并发送一个SYN（同步）数据包给服务器，询问是否可以打开一个连接。</li>
+<li><strong>SYN + ACK</strong>：服务器收到SYN包后，选择一个初始序列号y，并发送一个SYN&#x2F;ACK（同步&#x2F;确认）数据包给客户端，确认收到了客户端的SYN请求，并提供自己的初始化序列号。</li>
+<li><strong>ACK</strong>：客户端收到服务器的SYN&#x2F;ACK包后，向服务器发送一个ACK（确认）数据包，确认收到了服务器的初始化序列号。</li>
+</ol>
+<p>此时，客户端和服务器之间的TCP连接已经建立。</p>
+<h2 id="2-四次挥手（TCP连接终止）"><a href="#2-四次挥手（TCP连接终止）" class="headerlink" title="2. 四次挥手（TCP连接终止）"></a>2. 四次挥手（TCP连接终止）</h2><p>四次挥手的目的是安全地关闭一个TCP连接。</p>
+<ol>
+<li><strong>FIN</strong>：当数据发送完毕，客户端发送一个FIN（结束）数据包给服务器，表示希望关闭连接。</li>
+<li><strong>ACK</strong>：服务器收到FIN包后，发送一个ACK（确认）数据包给客户端，确认收到了关闭请求。但此时服务器可能还有数据需要发送，所以并不立刻关闭连接。</li>
+<li><strong>FIN</strong>：当服务器发送完所有数据后，发送另一个FIN数据包给客户端，告诉它我也准备好关闭连接了。</li>
+<li><strong>ACK</strong>：客户端收到服务器的FIN包后，发送一个ACK（确认）数据包给服务器，确认知道服务器已准备好关闭连接。</li>
+</ol>
+<p>在此之后，客户端和服务器之间的TCP连接被成功终止。</p>
+<p>这个机制确保了双方都可以安全、可靠地建立和终止连接。</p>
+<h2 id="10-七层网络模型和五层"><a href="#10-七层网络模型和五层" class="headerlink" title="10.七层网络模型和五层"></a>10.七层网络模型和五层</h2><p>计算机网络模型是一个理论框架，用于描述计算机网络中的操作和交互。最著名的网络模型有两个：OSI（开放系统互连）模型和TCP&#x2F;IP模型。</p>
+<ol>
+<li><p><strong>OSI七层模型</strong>：</p>
+<ul>
+<li>**应用层 (Application Layer)**：为应用程序提供网络服务，并定义了与其他应用程序的通信规则。</li>
+<li>**表示层 (Presentation Layer)**：负责数据格式转换、数据加密等任务，确保数据从一个系统传输到另一个系统时仍然保持其意义。</li>
+<li>**会话层 (Session Layer)**：负责建立、管理和终止通信会话。</li>
+<li>**传输层 (Transport Layer)**：为两台计算机之间的数据通信提供端到端的服务。主要协议有TCP和UDP。</li>
+<li>**网络层 (Network Layer)**：决定数据的路径选择和逻辑地址（如IP地址）。常见的协议有IP、ICMP、IGMP等。</li>
+<li>**数据链路层 (Data Link Layer)**：定义了如何在通信的实体之间传输数据。这层被分为两个子层：逻辑链路控制(LLC) 和 媒介访问控制(MAC)。</li>
+<li>**物理层 (Physical Layer)**：定义了与网络媒体的物理连接相关的特性，如电压、时钟频率等。</li>
+</ul>
+</li>
+<li><p><strong>TCP&#x2F;IP五层模型</strong>（也有些资料描述为四层模型）：</p>
+<ul>
+<li>**应用层 (Application Layer)**：与OSI模型的应用层、表示层和会话层对应。负责为应用程序提供网络服务，处理高层协议，例如HTTP、FTP、SMTP等。</li>
+<li>**传输层 (Transport Layer)**：与OSI模型的传输层对应。主要协议有TCP和UDP。</li>
+<li>**网络层 (Network Layer)**：与OSI模型的网络层对应。负责数据包的路由和转发。常见的协议有IP。</li>
+<li>**数据链路层 (Data Link Layer)**：与OSI模型的数据链路层对应。定义了如何在通信的实体之间传输数据。</li>
+<li>**物理层 (Physical Layer)**：与OSI模型的物理层对应。定义了与网络媒体的物理连接相关的特性。</li>
+</ul>
+<h2 id="11-进程调度算法"><a href="#11-进程调度算法" class="headerlink" title="11.进程调度算法"></a>11.进程调度算法</h2><p>进程调度是操作系统中负责决定哪个可用的进程应当分配给可用的CPU的部分。以下是一些常用的进程调度算法：</p>
+<ol>
+<li><strong>先来先服务 (FCFS, First-Come-First-Serve)</strong><ul>
+<li>最简单的调度算法</li>
+<li>依据进程到达的顺序进行调度</li>
+<li>可能导致“饥饿”情况，即某些进程长时间得不到执行</li>
+</ul>
+</li>
+<li><strong>最短作业优先 (SJF, Shortest Job First)</strong><ul>
+<li>选择最短执行时间的进程进行调度</li>
+<li>如果多个进程具有相同的运行时间，则采用FCFS</li>
+<li>也可能导致“饥饿”</li>
+</ul>
+</li>
+<li><strong>轮转法 (Round Robin, RR)</strong><ul>
+<li>每个进程被分配一个固定大小的时间片或量程</li>
+<li>进程的执行被限制在这个时间片内</li>
+<li>如果进程没有在一个时间片内完成，它被移到队尾等待下一个轮到它的时间片</li>
+</ul>
+</li>
+<li><strong>优先级调度</strong><ul>
+<li>每个进程分配一个优先级</li>
+<li>优先级最高的进程首先被执行</li>
+<li>如果两个进程具有相同的优先级，则FCFS原则被应用</li>
+<li>可能导致低优先级进程永远得不到执行（饥饿）</li>
+</ul>
+</li>
+<li><strong>多级反馈队列 (Multilevel Feedback Queue)</strong><ul>
+<li>结合了多种方法的优点</li>
+<li>系统有多个队列，每个队列有不同的执行时间</li>
+<li>进程开始时放在顶部队列，如果它没有在给定的时间片内完成，则被移动到下一个队列</li>
+<li>这样，CPU密集型的进程最终会被移动到底部的队列，而I&#x2F;O密集型的进程会在顶部队列中被快速处理</li>
+</ul>
+</li>
+<li><strong>最短剩余时间优先 (SRTF, Shortest Remaining Time First)</strong><ul>
+<li>是SJF的抢先式版本</li>
+<li>如果一个新的进程到达，其运行时间比当前正在执行的进程的剩余时间短，则挂起当前进程，并开始执行新进程</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="12-C-容器的底层实现"><a href="#12-C-容器的底层实现" class="headerlink" title="12.C++容器的底层实现"></a>12.C++容器的底层实现</h2><p>C++的STL（标准模板库）提供了一套功能丰富的容器类，这些容器使用了各种数据结构来高效地实现数据的存储和操作。以下是一些主要容器的底层实现简述：</p>
+<ol>
+<li><strong>std::vector</strong>：<ul>
+<li><strong>底层实现</strong>：动态数组。</li>
+<li><strong>特点</strong>：连续的内存块，支持O(1)的随机访问，但在中间插入或删除元素需要O(n)的时间。</li>
+</ul>
+</li>
+<li><strong>std::list</strong>：<ul>
+<li><strong>底层实现</strong>：双向链表。</li>
+<li><strong>特点</strong>：插入和删除都是O(1)的操作，但随机访问需要O(n)的时间。</li>
+</ul>
+</li>
+<li>**std::forward_list (C++11)**：<ul>
+<li><strong>底层实现</strong>：单向链表。</li>
+<li><strong>特点</strong>：只能向前迭代，与双向链表相比，单向链表使用更少的内存。</li>
+</ul>
+</li>
+<li><strong>std::deque</strong>：<ul>
+<li><strong>底层实现</strong>：数组的数组（即，一个中央控制块指向固定大小的块数组）。</li>
+<li><strong>特点</strong>：在首尾插入和删除操作的时间复杂度都是O(1)，支持O(1)的随机访问。</li>
+</ul>
+</li>
+<li><strong>std::stack &#x2F; std::queue</strong>：<ul>
+<li><strong>底层实现</strong>：通常基于std::deque，但可以使用其他容器（如std::list）。</li>
+<li><strong>特点</strong>：stack和queue只是容器适配器，它们提供了特定的接口（如push&#x2F;pop&#x2F;front&#x2F;back）。</li>
+</ul>
+</li>
+<li><strong>std::priority_queue</strong>：<ul>
+<li><strong>底层实现</strong>：通常基于std::vector，但实际上是一个二叉堆。</li>
+<li><strong>特点</strong>：支持插入操作和获取最大元素（或最小元素，取决于比较函数）的操作。</li>
+</ul>
+</li>
+<li><strong>std::set &#x2F; std::multiset</strong>：<ul>
+<li><strong>底层实现</strong>：红黑树（一种自平衡的二叉搜索树）。</li>
+<li><strong>特点</strong>：所有元素都会自动排序，插入、删除和查找操作的时间复杂度都是O(log n)。</li>
+</ul>
+</li>
+<li><strong>std::map &#x2F; std::multimap</strong>：<ul>
+<li><strong>底层实现</strong>：红黑树。</li>
+<li><strong>特点</strong>：键值对自动按键排序，插入、删除和查找操作的时间复杂度都是O(log n)。</li>
+</ul>
+</li>
+<li>**std::unordered_set &#x2F; std::unordered_multiset &#x2F; std::unordered_map &#x2F; std::unordered_multimap (C++11)**：<ul>
+<li><strong>底层实现</strong>：哈希表。</li>
+<li><strong>特点</strong>：在平均情况下，插入、删除和查找操作的时间复杂度都是O(1)；但在最坏情况下可能是O(n)。</li>
+</ul>
+</li>
+</ol>
+<h2 id="13-内存碎片"><a href="#13-内存碎片" class="headerlink" title="13.内存碎片"></a>13.内存碎片</h2><p>内存碎片大致分为两类：外部碎片和内部碎片。</p>
+<ol>
+<li><strong>外部碎片</strong>:<ul>
+<li>描述：当内存中有很多小的空闲块，它们各自单独都不足以满足分配请求时，即使这些小块的总和可能足够，这种情况就产生了外部碎片。</li>
+</ul>
+</li>
+<li><strong>内部碎片</strong>:<ul>
+<li>描述：当分配给程序的内存块比实际所需的大时，超过的那部分内存就是内部碎片。</li>
 </ul>
 </li>
 </ol>
